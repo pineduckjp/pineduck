@@ -1,17 +1,25 @@
-# Astro Starter Kit: Basics
+# PineDuck
 
-```sh
-npm create astro@latest -- --template basics
-```
+自給自足プラットフォーム「PineDuck」のホームページです。
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+- [PineDuckへ](https://pineduck.jp/)
 
-## 🚀 Project Structure
+## 技術仕様
 
-Inside of your Astro project, you'll see the following folders and files:
+- **ホスティング**: [Cloudflare Workers](https://www.cloudflare.com/products/workers/)
+- **フレームワーク**: [Astro](https://astro.build/)
+- **言語**: TypeScript, Astro, Markdown
+- **パッケージマネージャー**: npm
+
+## 構成
 
 ```text
-/
+pineduck/
+├── .github/
+│   ├── pull_request_template.md
+│   └── ISSUE_TEMPLATE/
+│       ├── fix.md
+│       └── feat.md
 ├── public/
 │   └── favicon.svg
 ├── src
@@ -26,21 +34,72 @@ Inside of your Astro project, you'll see the following folders and files:
 └── package.json
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+### レイアウト
 
-## 🧞 Commands
+- `Select`: 選択画面のレイアウト
+- `PR`: 販促画面のレイアウト
+- `Article`: 記事画面のレイアウト
+- `Contact`: お問い合わせ画面のレイアウト
+- `TesterEmail`: テストメールフォーム画面のレイアウト
 
-All commands are run from the root of the project, from a terminal:
+## セットアップ
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+### 必須環境
 
-## 👀 Want to learn more?
+- Node.js 22.12.0 以上
+- npm 10 以上
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+### インストール
+
+```bash
+git clone https://github.com/pineduckjp/pineduck.git
+cd pineduck
+npm install
+```
+
+## 開発ワークフロー
+
+### ローカル開発
+
+```bash
+npm run dev
+```
+
+`http://localhost:4321` でサーバーが起動します。
+
+## 開発ワークフロー
+
+### ローカル開発
+
+```bash
+npm run dev
+```
+
+`http://localhost:4321` でサーバーが起動します。
+
+### ビルド・プレビュー
+
+```bash
+# 本番ビルド
+npm run build
+
+# デプロイ前確認
+npm run preview
+```
+
+## コマンド
+
+ルートディレクトリで、以下のコマンドを実行できます。
+
+| Command                   | Action                                        |
+| :------------------------ | :-------------------------------------------- |
+| `npm install`             | 依存関係をインストール                        |
+| `npm run dev`             | `localhost:4321`で開発サーバーを開始          |
+| `npm run build`           | ビルド結果を`./dist/`に出力                   |
+| `npm run preview`         | デプロイ前にビルド結果をプレビュー            |
+| `npm run astro ...`       | `astro add`, `astro check` を実行する時に使用 |
+| `npm run astro -- --help` | Astro CLI のヘルプを参照                      |
+
+## 貢献
+
+このプロジェクトへの貢献に興味がある場合は、[CONTRIBUTING.md](./CONTRIBUTING.md) を参照してください。

@@ -1,0 +1,83 @@
+---
+import StaticSprite from "@/components/StaticSprite.astro";
+---
+
+<button id="scroll-down" type="button" aria-label="最下部へ移動"
+  ><StaticSprite name="symbol-down" alt="下へスクロール" /></button
+>
+
+<style>
+  #scroll-down {
+    position: fixed;
+    right: calc((100vw - min(600px, 100vw)) / 2 + 10px);
+    bottom: calc(52px + env(safe-area-inset-bottom));
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1px;
+    line-height: 0;
+    color: var(--dark);
+    cursor: pointer;
+    background: color-mix(in srgb, var(--base) 60%, transparent);
+    border: solid 1.5px var(--dark);
+    box-shadow: 3px 4px 0 var(--dark);
+  }
+</style>
+
+<script>
+  const contentContainer = document.querySelector(
+    ".content-container",
+  ) as HTMLElement;
+  const button = document.getElementById("scroll-down") as HTMLButtonElement;
+
+  // 10px以内の差であれば最下部とみなす
+  const BOTTOM_THRESHOLD = 10;
+  // 24フレーム分だけ追従してスクロールする
+  const FOLLOW_UP_FRAMES = 24;
+  // 1px以上の差があればスクロールする
+  const BOTTOM_TOP_THRESHOLD = 1;
+
+  // contentContainer要素のスクロール位置が最下部+10px~最下部に達したら、 scrollDownButtonを非表示にする
+  function handleScroll() {
+    const isAtBottom =
+      contentContainer.scrollHeight - contentContainer.scrollTop <=
+      contentContainer.clientHeight + BOTTOM_THRESHOLD;
+    button.style.display = isAtBottom ? "none" : "inline-flex";
+  }
+
+  // スクロール位置を最下部に移動する
+  function scrollToBottom() {
+    // 最下部に移動
+    const jumpToBottom = () => {
+      const nextTop = Math.max(0, contentContainer.scrollHeight);
+      const changed =
+        Math.abs(contentContainer.scrollTop - nextTop) > BOTTOM_TOP_THRESHOLD;
+      if (changed) {
+        contentContainer.scrollTop = nextTop;
+      }
+      return changed;
+    };
+
+    // まず1回移動
+    jumpToBottom();
+
+    // lazy画像などでレイアウトが変わる可能性があるため再計算
+    let remainingFrames = FOLLOW_UP_FRAMES;
+    const followGrowth = () => {
+      jumpToBottom();
+      remainingFrames -= 1;
+      if (remainingFrames > 0) {
+        requestAnimationFrame(followGrowth);
+      }
+    };
+
+    requestAnimationFrame(followGrowth);
+  }
+
+  button.addEventListener("click", scrollToBottom);
+  contentContainer.addEventListener("scroll", handleScroll);
+  contentContainer.addEventListener("load", handleScroll, true);
+  window.addEventListener("DOMContentLoaded", handleScroll);
+  window.addEventListener("resize", handleScroll);
+</script>

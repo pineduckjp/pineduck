@@ -1,0 +1,51 @@
+---
+import StaticSprite from "@/components/StaticSprite.astro";
+
+interface Props {
+  name: string;
+  logoIcon: string;
+  url: string;
+}
+
+const { name, logoIcon, url } = Astro.props;
+---
+
+<header>
+  <a href={url} aria-label={`${name}へ戻る`}>
+    <StaticSprite name={logoIcon} height={40} alt={`${name}ロゴアイコン`} />
+  </a>
+</header>
+
+<style>
+  header {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    padding: 5px 8px;
+    margin: 0 auto;
+    overflow: hidden;
+    border: solid 1.5px var(--dark);
+  }
+
+  @media screen and (width <= 600px) {
+    header {
+      border-top: none;
+      border-right: none;
+      border-bottom: solid 1.5px var(--middle);
+      border-left: none;
+    }
+  }
+
+  @media screen and (width >= 601px) {
+    header {
+      margin: 8px auto 0;
+    }
+  }
+
+  header > a {
+    display: block;
+    line-height: 0;
+  }
+</style>

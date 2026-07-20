@@ -1,0 +1,85 @@
+---
+import StaticSprite from "@/components/StaticSprite.astro";
+
+type SelectListItem = {
+  symbol: string;
+  title: string;
+  url?: string;
+  openInNewTab?: boolean;
+};
+
+type Props = {
+  items: SelectListItem[];
+};
+
+const { items } = Astro.props as Props;
+---
+
+<ul>
+  {
+    items.map((item) => (
+      <li>
+        <a
+          href={item.url}
+          class={item.url ? "" : "disabled"}
+          target={item.openInNewTab ? "_blank" : undefined}
+          rel={item.openInNewTab ? "noopener noreferrer" : undefined}
+        >
+          <span class="symbol-title">
+            <StaticSprite name={item.symbol} alt={item.title} />
+            <span>{item.title}</span>
+          </span>
+          <span>
+            {item.openInNewTab ? (
+              <StaticSprite name="symbol-open" alt="外部リンク" />
+            ) : (
+              ">"
+            )}
+          </span>
+        </a>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    border: 1.5px solid var(--dark);
+  }
+
+  li {
+    padding: 0;
+  }
+
+  li a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  li a:hover {
+    background-color: var(--middle);
+  }
+
+  li a.disabled {
+    color: var(--shadow);
+    pointer-events: none;
+    background: var(--middle);
+  }
+
+  .symbol-title {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .symbol-title span {
+    display: inline-block;
+  }
+</style>

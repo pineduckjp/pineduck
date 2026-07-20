@@ -1,0 +1,32 @@
+:root {
+  --light: rgb(250 249 247);
+  --base: rgb(229 228 227);
+  --middle: rgb(211 210 209);
+  --shadow: rgb(153 152 151);
+  --dark: rgb(89 88 88);
+  --red: rgb(193 114 97);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  scroll-behavior: auto;
+  font-family: var(--font-dot), sans-serif;
+  font-size: 17px;
+  font-weight: normal;
+  line-height: 1.3;
+  color: var(--dark);
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background: var(--base);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}

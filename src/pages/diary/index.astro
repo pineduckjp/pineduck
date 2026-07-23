@@ -1,0 +1,78 @@
+---
+import Layout from "@/layouts/SelectLayout.astro";
+
+import SelectList from "@/components/SelectList.astro";
+
+import { SITE_TITLE } from "@/consts.ts";
+
+const siteTitle = "PineDuckダイアリー | " + SITE_TITLE;
+---
+
+<Layout
+  header={{
+    name: "PineDuckダイアリー",
+    logoIcon: "logo-icon-diary",
+    url: "/diary/",
+  }}
+  title={siteTitle}
+  description="AIから感想がもらえる日記アプリ。"
+  canvas="canvas-diary"
+  index={true}
+  breadcrumb={[
+    { name: "PineDuck", symbol: "symbol-pineduck", url: "/" },
+    { name: "PineDuckダイアリー", symbol: "symbol-diary" },
+  ]}
+  prevUrl="/"
+>
+  <p>PineDuckダイアリーは、AIから感想がもらえる日記アプリです。</p>
+  <p>App Storeからダウンロード可能です。</p>
+
+  <h2>ダウンロード</h2>
+  <SelectList
+    items={[
+      {
+        symbol: "symbol-download",
+        title: "iOS版",
+        url: "https://apps.apple.com/us/app/pineduck%E3%83%80%E3%82%A4%E3%82%A2%E3%83%AA%E3%83%BC/id6755546005",
+        openInNewTab: true,
+      },
+    ]}
+  />
+
+  <h2>アプリの情報</h2>
+  <SelectList
+    items={[
+      {
+        symbol: "symbol-web",
+        title: "販促ページ",
+        url: "/diary/pr/",
+      },
+      {
+        symbol: "symbol-terms",
+        title: "利用規約",
+        url: "/diary/terms/",
+      },
+      {
+        symbol: "symbol-privacy",
+        title: "プライバシーポリシー",
+        url: "/diary/privacy/",
+      },
+      {
+        symbol: "symbol-commerce",
+        title: "特定商取引法に基づく表記",
+        url: "/commerce/",
+      },
+    ]}
+  />
+
+  <h2>お問い合わせ</h2>
+  <SelectList
+    items={[
+      {
+        symbol: "symbol-email",
+        title: "お問い合わせフォーム",
+        url: "/contact-form/?prev=%2Fdiary%2F&app=pineduck-diary",
+      },
+    ]}
+  />
+</Layout>

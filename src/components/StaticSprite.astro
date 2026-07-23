@@ -22,7 +22,7 @@ if (spriteEntries.length === 0) {
 
 const matches = spriteEntries.flatMap((entry: (typeof spriteEntries)[0]) =>
   Object.keys(entry.data.frames)
-    .filter((frameName) => frameName.startsWith(name))
+    .filter((frameName) => frameName === name)
     .map((frameName) => ({ entry, frameName })),
 );
 

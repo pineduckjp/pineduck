@@ -16,17 +16,17 @@ const { prevUrl, nextUrl, breadcrumb } = Astro.props;
 
 <footer>
   <button id="prev" class="footer-button" data-url={prevUrl} disabled={!prevUrl}
-    >&lt;&lt; 戻る</button
+    ><span>&lt;&lt; 戻る</span></button
   >
   <button id="open-menu" class="footer-button" aria-label="メニューを開く">
     <StaticSprite name="symbol-menu" alt="メニューアイコン" />
-    メニュー
+    <span>メニュー</span>
   </button>
   <button id="close-menu" class="footer-button" aria-label="メニューを閉じる">
-    × 閉じる
+    <span>× 閉じる</span>
   </button>
   <button id="next" class="footer-button" data-url={nextUrl} disabled={!nextUrl}
-    >&gt;&gt; 進む</button
+    ><span>&gt;&gt; 進む</span></button
   >
 </footer>
 
@@ -56,13 +56,13 @@ const { prevUrl, nextUrl, breadcrumb } = Astro.props;
 </div>
 
 <script>
-  const contentContainer = document.querySelector(
-    ".content-container",
+  const contentsContainer = document.getElementById(
+    "contents-container",
   ) as HTMLElement;
 
   // サブタイトルを取得してメニューに表示
   function getHeadings() {
-    const headings = contentContainer.querySelectorAll(
+    const headings = contentsContainer.querySelectorAll(
       "h1, h2",
     ) as NodeListOf<HTMLHeadingElement>;
     const menuList = document.getElementById("menu-list") as HTMLUListElement;
@@ -100,18 +100,16 @@ const { prevUrl, nextUrl, breadcrumb } = Astro.props;
     // 履歴を残さずにURLのハッシュを変更
     history.replaceState(null, "", `#${id}`);
 
-    // contentContainerがスクロールコンテナなので、contentContainerに対して移動する
     const jumpToTarget = () => {
       const targetRect = target.getBoundingClientRect();
-      const contentContainerRect = contentContainer.getBoundingClientRect();
+      const contentsRect = contentsContainer.getBoundingClientRect();
       const top =
-        contentContainer.scrollTop +
-        (targetRect.top - contentContainerRect.top);
+        contentsContainer.scrollTop + (targetRect.top - contentsRect.top);
       const nextTop = Math.max(0, top);
       const changed =
-        Math.abs(contentContainer.scrollTop - nextTop) > HASH_TOP_THRESHOLD;
+        Math.abs(contentsContainer.scrollTop - nextTop) > HASH_TOP_THRESHOLD;
       if (changed) {
-        contentContainer.scrollTop = nextTop;
+        contentsContainer.scrollTop = nextTop;
       }
       return changed;
     };

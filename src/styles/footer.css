@@ -23,9 +23,12 @@ footer {
 }
 
 .footer-button:disabled {
-  color: var(--shadow);
   pointer-events: none;
   background: var(--middle);
+}
+
+.footer-button:disabled span {
+  opacity: 0.6;
 }
 
 #close-menu {

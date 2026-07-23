@@ -54,8 +54,10 @@ const {
         <section class="canvas-container">
           <DynamicSprite name={canvas} alt={title} />
         </section>
-        <section class="content-container">
-          <slot />
+        <section id="contents-container">
+          <div class="contents">
+            <slot />
+          </div>
         </section>
       </div>
       <ScrollDown />

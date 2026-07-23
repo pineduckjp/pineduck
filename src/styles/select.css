@@ -23,27 +23,27 @@ main {
 section {
   flex: 1;
   width: 100%;
-  max-width: 600px;
   min-height: 0;
-  overflow: hidden;
 }
 
-.canvas-container {
-  overflow: hidden;
-}
-
-.content-container {
-  padding: 15px;
+#contents-container {
   overflow-y: auto;
 }
 
-.content-container h1,
-.content-container h2,
-.content-container p {
+.contents {
+  width: 100%;
+  max-width: 600px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.contents h1,
+.contents h2,
+.contents p {
   margin: 15px 0;
 }
 
-.content-container h2 {
+.contents h2 {
   padding-left: 12px;
   font-size: 17px;
   color: var(--shadow);

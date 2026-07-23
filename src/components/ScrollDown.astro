@@ -26,8 +26,8 @@ import StaticSprite from "@/components/StaticSprite.astro";
 </style>
 
 <script>
-  const contentContainer = document.querySelector(
-    ".content-container",
+  const contentsContainer = document.getElementById(
+    "contents-container",
   ) as HTMLElement;
   const button = document.getElementById("scroll-down") as HTMLButtonElement;
 
@@ -38,11 +38,11 @@ import StaticSprite from "@/components/StaticSprite.astro";
   // 1px以上の差があればスクロールする
   const BOTTOM_TOP_THRESHOLD = 1;
 
-  // contentContainer要素のスクロール位置が最下部+10px~最下部に達したら、 scrollDownButtonを非表示にする
+  // スクロール位置が最下部+10px~最下部に達したらボタンを非表示にする
   function handleScroll() {
     const isAtBottom =
-      contentContainer.scrollHeight - contentContainer.scrollTop <=
-      contentContainer.clientHeight + BOTTOM_THRESHOLD;
+      contentsContainer.scrollHeight - contentsContainer.scrollTop <=
+      contentsContainer.clientHeight + BOTTOM_THRESHOLD;
     button.style.display = isAtBottom ? "none" : "inline-flex";
   }
 
@@ -50,11 +50,11 @@ import StaticSprite from "@/components/StaticSprite.astro";
   function scrollToBottom() {
     // 最下部に移動
     const jumpToBottom = () => {
-      const nextTop = Math.max(0, contentContainer.scrollHeight);
+      const nextTop = Math.max(0, contentsContainer.scrollHeight);
       const changed =
-        Math.abs(contentContainer.scrollTop - nextTop) > BOTTOM_TOP_THRESHOLD;
+        Math.abs(contentsContainer.scrollTop - nextTop) > BOTTOM_TOP_THRESHOLD;
       if (changed) {
-        contentContainer.scrollTop = nextTop;
+        contentsContainer.scrollTop = nextTop;
       }
       return changed;
     };
@@ -76,8 +76,8 @@ import StaticSprite from "@/components/StaticSprite.astro";
   }
 
   button.addEventListener("click", scrollToBottom);
-  contentContainer.addEventListener("scroll", handleScroll);
-  contentContainer.addEventListener("load", handleScroll, true);
+  contentsContainer.addEventListener("scroll", handleScroll);
+  contentsContainer.addEventListener("load", handleScroll, true);
   window.addEventListener("DOMContentLoaded", handleScroll);
   window.addEventListener("resize", handleScroll);
 </script>

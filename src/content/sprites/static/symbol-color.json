@@ -1,6 +1,6 @@
 {
   "frames": {
-    "symbol-color-pineduck-0": {
+    "symbol-color-pineduck": {
       "frame": { "x": 0, "y": 0, "w": 21, "h": 21 },
       "rotated": false,
       "trimmed": false,
@@ -8,7 +8,7 @@
       "sourceSize": { "w": 21, "h": 21 },
       "duration": 100
     },
-    "symbol-color-cafe-0": {
+    "symbol-color-cafe": {
       "frame": { "x": 21, "y": 0, "w": 21, "h": 21 },
       "rotated": false,
       "trimmed": false,
@@ -16,7 +16,7 @@
       "sourceSize": { "w": 21, "h": 21 },
       "duration": 100
     },
-    "symbol-color-art-0": {
+    "symbol-color-art": {
       "frame": { "x": 42, "y": 0, "w": 21, "h": 21 },
       "rotated": false,
       "trimmed": false,
@@ -24,7 +24,7 @@
       "sourceSize": { "w": 21, "h": 21 },
       "duration": 100
     },
-    "symbol-color-farm-0": {
+    "symbol-color-farm": {
       "frame": { "x": 63, "y": 0, "w": 21, "h": 21 },
       "rotated": false,
       "trimmed": false,
@@ -32,7 +32,7 @@
       "sourceSize": { "w": 21, "h": 21 },
       "duration": 100
     },
-    "symbol-color-cooking-0": {
+    "symbol-color-cooking": {
       "frame": { "x": 84, "y": 0, "w": 21, "h": 21 },
       "rotated": false,
       "trimmed": false,
@@ -40,7 +40,7 @@
       "sourceSize": { "w": 21, "h": 21 },
       "duration": 100
     },
-    "symbol-color-sewing-0": {
+    "symbol-color-sewing": {
       "frame": { "x": 105, "y": 0, "w": 21, "h": 21 },
       "rotated": false,
       "trimmed": false,
@@ -48,7 +48,7 @@
       "sourceSize": { "w": 21, "h": 21 },
       "duration": 100
     },
-    "symbol-color-story-0": {
+    "symbol-color-story": {
       "frame": { "x": 126, "y": 0, "w": 21, "h": 21 },
       "rotated": false,
       "trimmed": false,
@@ -56,7 +56,7 @@
       "sourceSize": { "w": 21, "h": 21 },
       "duration": 100
     },
-    "symbol-color-build-0": {
+    "symbol-color-build": {
       "frame": { "x": 147, "y": 0, "w": 21, "h": 21 },
       "rotated": false,
       "trimmed": false,
@@ -64,7 +64,7 @@
       "sourceSize": { "w": 21, "h": 21 },
       "duration": 100
     },
-    "symbol-color-camp-0": {
+    "symbol-color-camp": {
       "frame": { "x": 168, "y": 0, "w": 21, "h": 21 },
       "rotated": false,
       "trimmed": false,
@@ -72,7 +72,7 @@
       "sourceSize": { "w": 21, "h": 21 },
       "duration": 100
     },
-    "symbol-color-tail-0": {
+    "symbol-color-diary": {
       "frame": { "x": 189, "y": 0, "w": 21, "h": 21 },
       "rotated": false,
       "trimmed": false,
@@ -80,7 +80,7 @@
       "sourceSize": { "w": 21, "h": 21 },
       "duration": 100
     },
-    "symbol-color-editor-0": {
+    "symbol-color-tail": {
       "frame": { "x": 210, "y": 0, "w": 21, "h": 21 },
       "rotated": false,
       "trimmed": false,
@@ -88,7 +88,7 @@
       "sourceSize": { "w": 21, "h": 21 },
       "duration": 100
     },
-    "symbol-color-starter-0": {
+    "symbol-color-editor": {
       "frame": { "x": 231, "y": 0, "w": 21, "h": 21 },
       "rotated": false,
       "trimmed": false,
@@ -96,8 +96,16 @@
       "sourceSize": { "w": 21, "h": 21 },
       "duration": 100
     },
-    "symbol-color-portfolio-0": {
+    "symbol-color-starter": {
       "frame": { "x": 252, "y": 0, "w": 21, "h": 21 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 21 },
+      "sourceSize": { "w": 21, "h": 21 },
+      "duration": 100
+    },
+    "symbol-color-portfolio": {
+      "frame": { "x": 273, "y": 0, "w": 21, "h": 21 },
       "rotated": false,
       "trimmed": false,
       "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 21 },
@@ -110,7 +118,7 @@
     "version": "1.3.17.2-arm64",
     "image": "symbol-color.webp",
     "format": "RGBA8888",
-    "size": { "w": 273, "h": 21 },
+    "size": { "w": 294, "h": 21 },
     "scale": "1",
     "frameTags": [
       {
@@ -177,30 +185,37 @@
         "color": "#000000ff"
       },
       {
-        "name": "tail",
+        "name": "diary",
         "from": 9,
         "to": 9,
         "direction": "forward",
         "color": "#000000ff"
       },
       {
-        "name": "editor",
+        "name": "tail",
         "from": 10,
         "to": 10,
         "direction": "forward",
         "color": "#000000ff"
       },
       {
-        "name": "starter",
+        "name": "editor",
         "from": 11,
         "to": 11,
         "direction": "forward",
         "color": "#000000ff"
       },
       {
-        "name": "portfolio",
+        "name": "starter",
         "from": 12,
         "to": 12,
+        "direction": "forward",
+        "color": "#000000ff"
+      },
+      {
+        "name": "portfolio",
+        "from": 13,
+        "to": 13,
         "direction": "forward",
         "color": "#000000ff"
       }

@@ -64,7 +64,7 @@
       "sourceSize": { "w": 900, "h": 110 },
       "duration": 1
     },
-    "logo-icon-pineduck": {
+    "logo-icon-diary": {
       "frame": { "x": 0, "y": 880, "w": 900, "h": 110 },
       "rotated": false,
       "trimmed": false,
@@ -72,7 +72,7 @@
       "sourceSize": { "w": 900, "h": 110 },
       "duration": 1
     },
-    "logo-icon-しっぽ": {
+    "logo-icon-pineduck": {
       "frame": { "x": 0, "y": 990, "w": 900, "h": 110 },
       "rotated": false,
       "trimmed": false,
@@ -80,7 +80,7 @@
       "sourceSize": { "w": 900, "h": 110 },
       "duration": 1
     },
-    "logo-icon-エディター": {
+    "logo-icon-tail": {
       "frame": { "x": 0, "y": 1100, "w": 900, "h": 110 },
       "rotated": false,
       "trimmed": false,
@@ -88,7 +88,7 @@
       "sourceSize": { "w": 900, "h": 110 },
       "duration": 1
     },
-    "logo-icon-スターター": {
+    "logo-icon-editor": {
       "frame": { "x": 0, "y": 1210, "w": 900, "h": 110 },
       "rotated": false,
       "trimmed": false,
@@ -96,8 +96,16 @@
       "sourceSize": { "w": 900, "h": 110 },
       "duration": 1
     },
-    "logo-icon-ポートフォリオ": {
+    "logo-icon-starter": {
       "frame": { "x": 0, "y": 1320, "w": 900, "h": 110 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 900, "h": 110 },
+      "sourceSize": { "w": 900, "h": 110 },
+      "duration": 1
+    },
+    "logo-icon-portfolio": {
+      "frame": { "x": 0, "y": 1430, "w": 900, "h": 110 },
       "rotated": false,
       "trimmed": false,
       "spriteSourceSize": { "x": 0, "y": 0, "w": 900, "h": 110 },
@@ -110,7 +118,7 @@
     "version": "1.3.17.2-arm64",
     "image": "logo-icon.webp",
     "format": "RGBA8888",
-    "size": { "w": 900, "h": 1430 },
+    "size": { "w": 900, "h": 1540 },
     "scale": "1",
     "frameTags": [
       {
@@ -170,37 +178,44 @@
         "color": "#c99558ff"
       },
       {
-        "name": "pineduck",
+        "name": "diary",
         "from": 8,
         "to": 8,
         "direction": "forward",
-        "color": "#000000ff"
+        "color": "#699979ff"
       },
       {
-        "name": "しっぽ",
+        "name": "pineduck",
         "from": 9,
         "to": 9,
         "direction": "forward",
         "color": "#000000ff"
       },
       {
-        "name": "エディター",
+        "name": "tail",
         "from": 10,
         "to": 10,
         "direction": "forward",
         "color": "#000000ff"
       },
       {
-        "name": "スターター",
+        "name": "editor",
         "from": 11,
         "to": 11,
         "direction": "forward",
         "color": "#000000ff"
       },
       {
-        "name": "ポートフォリオ",
+        "name": "starter",
         "from": 12,
         "to": 12,
+        "direction": "forward",
+        "color": "#000000ff"
+      },
+      {
+        "name": "portfolio",
+        "from": 13,
+        "to": 13,
         "direction": "forward",
         "color": "#000000ff"
       }

@@ -1,0 +1,52 @@
+---
+import Layout from "@/layouts/SelectLayout.astro";
+
+import SelectList from "@/components/SelectList.astro";
+
+import { SITE_TITLE } from "@/consts.ts";
+
+const siteTitle = "アヒルのポートフォリオ | " + SITE_TITLE;
+---
+
+<Layout
+  header={{
+    name: "アヒルのポートフォリオ",
+    logoIcon: "logo-icon-portfolio",
+    url: "/duck-portfolio/",
+  }}
+  title={siteTitle}
+  description="過去に描いた平面作品。"
+  canvas="canvas-portfolio"
+  index={true}
+  breadcrumb={[
+    { name: "PineDuck", symbol: "symbol-pineduck", url: "/" },
+    { name: "アヒルのポートフォリオ", symbol: "symbol-portfolio" },
+  ]}
+  prevUrl="/"
+>
+  <p>
+    アヒルのポートフォリオは、過去に描いた平面作品をまとめたポートフォリオサイトです。
+  </p>
+
+  <h2>サイトの情報</h2>
+  <SelectList
+    items={[
+      {
+        symbol: "symbol-web",
+        title: "アヒルのポートフォリオ",
+        url: "https://duck-portfolio.pineduck.jp/",
+      },
+    ]}
+  />
+
+  <h2>お問い合わせ</h2>
+  <SelectList
+    items={[
+      {
+        symbol: "symbol-email",
+        title: "お問い合わせフォーム",
+        url: "/contact-form/?prev=%2Fduck-portfolio%2F&app=pineduck-portfolio",
+      },
+    ]}
+  />
+</Layout>

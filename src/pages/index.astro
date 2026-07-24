@@ -1,11 +1,165 @@
 ---
-import Welcome from "../components/Welcome.astro";
-import Layout from "../layouts/Layout.astro";
+import Layout from "@/layouts/SelectLayout.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import SelectList from "@/components/SelectList.astro";
+
+import { SITE_TITLE, SITE_DESCRIPTION } from "@/consts.ts";
 ---
 
-<Layout>
-  <Welcome />
+<Layout
+  header={{
+    name: "PineDuck",
+    logoIcon: "logo-icon-pineduck",
+    url: "/",
+  }}
+  title={SITE_TITLE}
+  description={SITE_DESCRIPTION}
+  canvas="canvas-home"
+  index={true}
+  breadcrumb={[{ name: "PineDuck", symbol: "symbol-pineduck" }]}
+>
+  <p>
+    <span id="greeting">こんにちは</span
+    >。ようこそ、自給自足プラットフォームPineDuckへ!
+  </p>
+  <p>お好きな項目を選択してください。</p>
+
+  <h2>PineDuckアプリシリーズ</h2>
+  <SelectList
+    items={[
+      {
+        symbol: "symbol-color-cafe",
+        title: "PineDuckカフェ",
+        url: "/cafe/",
+      },
+      {
+        symbol: "symbol-color-art",
+        title: "PineDuckアート",
+        url: "/art/",
+      },
+      {
+        symbol: "symbol-color-farm",
+        title: "PineDuckファーム",
+        url: "/farm/",
+      },
+      {
+        symbol: "symbol-color-cooking",
+        title: "PineDuckクッキング",
+        url: "/cooking/",
+      },
+      {
+        symbol: "symbol-color-sewing",
+        title: "PineDuckソーイング",
+        url: "/sewing/",
+      },
+      {
+        symbol: "symbol-color-story",
+        title: "PineDuckストーリー",
+        url: "/story/",
+      },
+      {
+        symbol: "symbol-color-build",
+        title: "PineDuckビルド",
+        url: "/build/",
+      },
+      {
+        symbol: "symbol-color-camp",
+        title: "PineDuckキャンプ",
+        url: "/camp/",
+      },
+    ]}
+  />
+
+  <h2>アヒルのアプリシリーズ</h2>
+  <SelectList
+    items={[
+      {
+        symbol: "symbol-color-tail",
+        title: "アヒルのしっぽ",
+        url: "/duck-tail/",
+      },
+      {
+        symbol: "symbol-color-portfolio",
+        title: "アヒルのポートフォリオ",
+        url: "/duck-portfolio/",
+      },
+      {
+        symbol: "symbol-color-starter",
+        title: "アヒルのスターター",
+        url: "/duck-starter/",
+      },
+      {
+        symbol: "symbol-color-editor",
+        title: "アヒルのエディター",
+        url: "/duck-editor/",
+      },
+    ]}
+  />
+
+  <h2>その他の過去に制作したアプリ</h2>
+  <SelectList
+    items={[
+      {
+        symbol: "symbol-color-diary",
+        title: "PineDuckダイアリー",
+        url: "/diary/",
+      },
+    ]}
+  />
+
+  <h2>サイトの情報</h2>
+  <SelectList
+    items={[
+      {
+        symbol: "symbol-terms",
+        title: "利用規約",
+        url: "/terms/",
+      },
+      {
+        symbol: "symbol-privacy",
+        title: "プライバシーポリシー",
+        url: "/privacy/",
+      },
+      {
+        symbol: "symbol-commerce",
+        title: "特定商取引法に基づく表記",
+        url: "/commerce/",
+      },
+    ]}
+  />
+
+  <h2>お問い合わせ</h2>
+  <SelectList
+    items={[
+      {
+        symbol: "symbol-email",
+        title: "お問い合わせフォーム",
+        url: "/contact-form/",
+      },
+      {
+        symbol: "symbol-git",
+        title: "GitHub",
+        url: "https://github.com/pineduckjp",
+        openInNewTab: true,
+      },
+    ]}
+  />
 </Layout>
+
+<script>
+  const greeting = document.getElementById("greeting") as HTMLSpanElement;
+
+  const now = new Date();
+  const hour = now.getHours();
+
+  if (hour < 12) {
+    // ~12:00
+    greeting.textContent = "おはようございます";
+  } else if (hour < 18) {
+    // ~18:00
+    greeting.textContent = "こんにちは";
+  } else {
+    // ~24:00
+    greeting.textContent = "こんばんは";
+  }
+</script>

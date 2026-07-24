@@ -1,0 +1,116 @@
+---
+import Layout from "@/layouts/SelectLayout.astro";
+
+import SelectList from "@/components/SelectList.astro";
+
+import { SITE_TITLE } from "@/consts.ts";
+
+const siteTitle = "PineDuckアート | " + SITE_TITLE;
+---
+
+<Layout
+  header={{
+    name: "PineDuckアート",
+    logoIcon: "logo-icon-art",
+    url: "/art/",
+  }}
+  title={siteTitle}
+  description="デッサンの基本をゲーム感覚で。"
+  canvas="canvas-art"
+  index={true}
+  breadcrumb={[
+    { name: "PineDuck", symbol: "symbol-pineduck", url: "/" },
+    { name: "PineDuckアート", symbol: "symbol-art" },
+  ]}
+  prevUrl="/"
+>
+  <p>
+    PineDuckアートは、デッサンの基本をゲーム感覚で楽しく気軽に学べるアプリです。
+  </p>
+  <p>現在、MVP(簡易版)を公開中です。</p>
+
+  <h2>MVP（簡易版）ダウンロード</h2>
+  <SelectList
+    items={[
+      {
+        symbol: "symbol-download",
+        title: "Web版(アプリページへ)",
+        url: "https://art.pineduck.jp/",
+        openInNewTab: true,
+      },
+      {
+        symbol: "symbol-download",
+        title: "iOS版（TestFlightへ）",
+        url: "https://testflight.apple.com/join/KFfraUxP",
+        openInNewTab: true,
+      },
+      {
+        symbol: "symbol-edit",
+        title: "Android版(MVP申請フォームヘ)",
+        url: "/art/android-mvp-request-form/",
+      },
+    ]}
+  />
+
+  <h2>ダウンロード</h2>
+  <SelectList
+    items={[
+      {
+        symbol: "symbol-download",
+        title: "Web版(準備中)",
+        openInNewTab: true,
+      },
+      {
+        symbol: "symbol-download",
+        title: "Android版(準備中)",
+        openInNewTab: true,
+      },
+      {
+        symbol: "symbol-download",
+        title: "iOS版(準備中)",
+        openInNewTab: true,
+      },
+    ]}
+  />
+
+  <h2>アプリの情報</h2>
+  <SelectList
+    items={[
+      {
+        symbol: "symbol-web",
+        title: "販促ページ",
+        url: "/art/pr/",
+      },
+      {
+        symbol: "symbol-guide",
+        title: "使い方ガイド",
+      },
+      {
+        symbol: "symbol-terms",
+        title: "利用規約",
+        url: "/art/terms/",
+      },
+      {
+        symbol: "symbol-privacy",
+        title: "プライバシーポリシー",
+        url: "/art/privacy/",
+      },
+      {
+        symbol: "symbol-commerce",
+        title: "特定商取引法に基づく表記",
+        url: "/commerce/",
+      },
+    ]}
+  />
+
+  <h2>お問い合わせ</h2>
+  <SelectList
+    items={[
+      {
+        symbol: "symbol-email",
+        title: "お問い合わせフォーム",
+        url: "/contact-form/?prev=%2Fart%2F&app=pineduck-art",
+      },
+    ]}
+  />
+</Layout>

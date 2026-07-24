@@ -16,22 +16,90 @@
 ```text
 pineduck/
 ├── .github/
-│   ├── pull_request_template.md
-│   └── ISSUE_TEMPLATE/
-│       ├── fix.md
-│       └── feat.md
+│   ├── ISSUE_TEMPLATE/
+│   │   ├── feat.md
+│   │   └── fix.md
+│   └── pull_request_template.md
+├── docs/
+│   ├── images/
+│   │   └── *.webp
+│   └── sprites.md
 ├── public/
 │   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+├── src/
+│   ├── assets/
+│   │   ├── fonts/
+│   │   │   └── *.woff2
+│   │   └── sprites/
+│   │       ├── dynamic/
+│   │       │   └── *.webp
+│   │       └── static/
+│   │           └── *.webp
+│   ├── components/
+│   │   ├── DynamicSprite.astro
+│   │   ├── Footer.astro
+│   │   ├── Head.astro
+│   │   ├── Header.astro
+│   │   ├── OptImg.astro
+│   │   ├── ScrollDown.astro
+│   │   ├── SelectList.astro
+│   │   └── StaticSprite.astro
+│   ├── content/
+│   │   └── sprites/
+│   │       ├── dynamic/
+│   │       │   └── *.json
+│   │       └── static/
+│   │           └── *.json
+│   ├── layouts/
+│   │   └── SelectLayout.astro
+│   ├── pages/
+│   │   ├── art/
+│   │   │   └── index.astro
+│   │   ├── build/
+│   │   │   └── index.astro
+│   │   ├── cafe/
+│   │   │   └── index.astro
+│   │   ├── camp/
+│   │   │   └── index.astro
+│   │   ├── cooking/
+│   │   │   └── index.astro
+│   │   ├── diary/
+│   │   │   └── index.astro
+│   │   ├── duck-editor/
+│   │   │   └── index.astro
+│   │   ├── duck-portfolio/
+│   │   │   └── index.astro
+│   │   ├── duck-starter/
+│   │   │   └── index.astro
+│   │   ├── duck-tail/
+│   │   │   └── index.astro
+│   │   ├── farm/
+│   │   │   └── index.astro
+│   │   ├── sewing/
+│   │   │   └── index.astro
+│   │   ├── story/
+│   │   │   └── index.astro
+│   │   └── index.astro
+│   ├── styles/
+│   │   ├── dynamic-sprite.css
+│   │   ├── footer.css
+│   │   ├── global.css
+│   │   ├── select.css
+│   │   └── static-sprite.css
+│   ├── types/
+│   │   └── breadcrumb.ts
+│   ├── consts.ts
+│   └── content.config.ts
+├── AGENTS.md
+├── CLAUDE.md
+├── CONTRIBUTING.md
+├── README.md
+├── astro.config.mjs
+├── eslint.config.mjs
+├── package-lock.json
+├── package.json
+├── stylelint.config.mjs
+└── tsconfig.json
 ```
 
 ### レイアウト
@@ -103,3 +171,7 @@ npm run preview
 ## 貢献
 
 このプロジェクトへの貢献に興味がある場合は、[CONTRIBUTING.md](./CONTRIBUTING.md) を参照してください。
+
+## ドキュメント
+
+- [スプライトの使用](./docs/sprites.md)

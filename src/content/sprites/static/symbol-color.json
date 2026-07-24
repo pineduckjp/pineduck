@@ -1,0 +1,224 @@
+{
+  "frames": {
+    "symbol-color-pineduck": {
+      "frame": { "x": 0, "y": 0, "w": 21, "h": 21 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 21 },
+      "sourceSize": { "w": 21, "h": 21 },
+      "duration": 100
+    },
+    "symbol-color-cafe": {
+      "frame": { "x": 21, "y": 0, "w": 21, "h": 21 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 21 },
+      "sourceSize": { "w": 21, "h": 21 },
+      "duration": 100
+    },
+    "symbol-color-art": {
+      "frame": { "x": 42, "y": 0, "w": 21, "h": 21 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 21 },
+      "sourceSize": { "w": 21, "h": 21 },
+      "duration": 100
+    },
+    "symbol-color-farm": {
+      "frame": { "x": 63, "y": 0, "w": 21, "h": 21 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 21 },
+      "sourceSize": { "w": 21, "h": 21 },
+      "duration": 100
+    },
+    "symbol-color-cooking": {
+      "frame": { "x": 84, "y": 0, "w": 21, "h": 21 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 21 },
+      "sourceSize": { "w": 21, "h": 21 },
+      "duration": 100
+    },
+    "symbol-color-sewing": {
+      "frame": { "x": 105, "y": 0, "w": 21, "h": 21 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 21 },
+      "sourceSize": { "w": 21, "h": 21 },
+      "duration": 100
+    },
+    "symbol-color-story": {
+      "frame": { "x": 126, "y": 0, "w": 21, "h": 21 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 21 },
+      "sourceSize": { "w": 21, "h": 21 },
+      "duration": 100
+    },
+    "symbol-color-build": {
+      "frame": { "x": 147, "y": 0, "w": 21, "h": 21 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 21 },
+      "sourceSize": { "w": 21, "h": 21 },
+      "duration": 100
+    },
+    "symbol-color-camp": {
+      "frame": { "x": 168, "y": 0, "w": 21, "h": 21 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 21 },
+      "sourceSize": { "w": 21, "h": 21 },
+      "duration": 100
+    },
+    "symbol-color-diary": {
+      "frame": { "x": 189, "y": 0, "w": 21, "h": 21 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 21 },
+      "sourceSize": { "w": 21, "h": 21 },
+      "duration": 100
+    },
+    "symbol-color-tail": {
+      "frame": { "x": 210, "y": 0, "w": 21, "h": 21 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 21 },
+      "sourceSize": { "w": 21, "h": 21 },
+      "duration": 100
+    },
+    "symbol-color-editor": {
+      "frame": { "x": 231, "y": 0, "w": 21, "h": 21 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 21 },
+      "sourceSize": { "w": 21, "h": 21 },
+      "duration": 100
+    },
+    "symbol-color-starter": {
+      "frame": { "x": 252, "y": 0, "w": 21, "h": 21 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 21 },
+      "sourceSize": { "w": 21, "h": 21 },
+      "duration": 100
+    },
+    "symbol-color-portfolio": {
+      "frame": { "x": 273, "y": 0, "w": 21, "h": 21 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 21 },
+      "sourceSize": { "w": 21, "h": 21 },
+      "duration": 100
+    }
+  },
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "version": "1.3.17.2-arm64",
+    "image": "symbol-color.webp",
+    "format": "RGBA8888",
+    "size": { "w": 294, "h": 21 },
+    "scale": "1",
+    "frameTags": [
+      {
+        "name": "pineduck",
+        "from": 0,
+        "to": 0,
+        "direction": "forward",
+        "color": "#000000ff"
+      },
+      {
+        "name": "cafe",
+        "from": 1,
+        "to": 1,
+        "direction": "forward",
+        "color": "#000000ff"
+      },
+      {
+        "name": "art",
+        "from": 2,
+        "to": 2,
+        "direction": "forward",
+        "color": "#000000ff"
+      },
+      {
+        "name": "farm",
+        "from": 3,
+        "to": 3,
+        "direction": "forward",
+        "color": "#000000ff"
+      },
+      {
+        "name": "cooking",
+        "from": 4,
+        "to": 4,
+        "direction": "forward",
+        "color": "#000000ff"
+      },
+      {
+        "name": "sewing",
+        "from": 5,
+        "to": 5,
+        "direction": "forward",
+        "color": "#000000ff"
+      },
+      {
+        "name": "story",
+        "from": 6,
+        "to": 6,
+        "direction": "forward",
+        "color": "#000000ff"
+      },
+      {
+        "name": "build",
+        "from": 7,
+        "to": 7,
+        "direction": "forward",
+        "color": "#000000ff"
+      },
+      {
+        "name": "camp",
+        "from": 8,
+        "to": 8,
+        "direction": "forward",
+        "color": "#000000ff"
+      },
+      {
+        "name": "diary",
+        "from": 9,
+        "to": 9,
+        "direction": "forward",
+        "color": "#000000ff"
+      },
+      {
+        "name": "tail",
+        "from": 10,
+        "to": 10,
+        "direction": "forward",
+        "color": "#000000ff"
+      },
+      {
+        "name": "editor",
+        "from": 11,
+        "to": 11,
+        "direction": "forward",
+        "color": "#000000ff"
+      },
+      {
+        "name": "starter",
+        "from": 12,
+        "to": 12,
+        "direction": "forward",
+        "color": "#000000ff"
+      },
+      {
+        "name": "portfolio",
+        "from": 13,
+        "to": 13,
+        "direction": "forward",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

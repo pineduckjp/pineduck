@@ -1,0 +1,10 @@
+---
+import { Image } from "astro:assets";
+import type { ComponentProps } from "astro/types";
+
+type Props = ComponentProps<typeof Image>;
+
+const { quality = "max", ...rest } = Astro.props as Props;
+---
+
+<Image {...rest} quality={quality} />

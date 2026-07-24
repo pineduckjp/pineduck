@@ -1,0 +1,144 @@
+---
+import { getCollection } from "astro:content";
+import type { ImageMetadata } from "astro";
+
+import OptImg from "@/components/OptImg.astro";
+
+import "@/styles/dynamic-sprite.css";
+
+interface Props {
+  name: string; // 例: canvas-home
+  alt?: string;
+}
+
+const { name, alt = "" } = Astro.props as Props;
+
+const spriteEntries = await getCollection("spritesDynamic");
+if (spriteEntries.length === 0) {
+  throw new Error("spritesDynamic collection is empty");
+}
+
+const resolved = spriteEntries
+  .map((entry) => {
+    const tag = entry.data.meta.frameTags.find((t) =>
+      (entry.id + "-" + t.name).startsWith(name),
+    );
+    if (!tag) return null;
+    return { entry, tag };
+  })
+  .find((v) => v !== null);
+
+if (!resolved) {
+  throw new Error("Unknown dynamic sprite name: " + name);
+}
+
+const spriteData = resolved.entry.data;
+const tag = resolved.tag;
+
+const allFrames = Object.values(spriteData.frames);
+const frames = allFrames.slice(tag.from, tag.to + 1);
+if (frames.length === 0) {
+  throw new Error("No frames found for: " + name);
+}
+
+const animationFrames = frames.map((f) => ({
+  x: f.frame.x,
+  y: f.frame.y,
+  duration: f.duration,
+}));
+
+const imageModules = import.meta.glob("/src/assets/sprites/dynamic/*.webp", {
+  eager: true,
+  import: "default",
+}) as Record<string, ImageMetadata>;
+
+const imageKey = "/src/assets/sprites/dynamic/" + spriteData.meta.image;
+const sheetImage = imageModules[imageKey];
+if (!sheetImage) {
+  throw new Error("Sprite image not found: " + imageKey);
+}
+
+const frameW = frames[0].frame.w;
+const frameH = frames[0].frame.h;
+
+const wrapperStyle = {
+  "--sprite-frame-w": String(frameW),
+  "--sprite-frame-h": String(frameH),
+  "--sprite-sheet-w": String(spriteData.meta.size.w),
+  "--sprite-sheet-h": String(spriteData.meta.size.h),
+};
+---
+
+<div id="dynamic-sprite" class="dynamic-sprite" style={wrapperStyle}>
+  <canvas id="dynamic-sprite-canvas" width={frameW} height={frameH}></canvas>
+  <OptImg
+    id="dynamic-sprite-sheet"
+    src={sheetImage}
+    alt={alt}
+    width={spriteData.meta.size.w}
+    height={spriteData.meta.size.h}
+    loading="eager"
+  />
+</div>
+
+<script define:vars={{ animationFrames, frameW, frameH }} is:inline>
+  function initDynamicSprite() {
+    const root = document.getElementById("dynamic-sprite");
+    if (!root || root.dataset.initialized === "1") return;
+
+    const spriteSheet = document.getElementById("dynamic-sprite-sheet");
+    const canvas = document.getElementById("dynamic-sprite-canvas");
+    if (!spriteSheet || !canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    root.dataset.initialized = "1";
+    ctx.imageSmoothingEnabled = false;
+
+    let currentFrame = 0;
+    let frameStartTime = performance.now();
+
+    const applyFrame = (index) => {
+      const { x, y } = animationFrames[index];
+      ctx.clearRect(0, 0, frameW, frameH);
+      ctx.drawImage(spriteSheet, x, y, frameW, frameH, 0, 0, frameW, frameH);
+    };
+
+    const updateFrame = (timestamp) => {
+      const frameData = animationFrames[currentFrame];
+      const elapsed = timestamp - frameStartTime;
+
+      if (elapsed >= frameData.duration) {
+        currentFrame = (currentFrame + 1) % animationFrames.length;
+        frameStartTime = timestamp;
+      }
+
+      applyFrame(currentFrame);
+      requestAnimationFrame(updateFrame);
+    };
+
+    const start = () => {
+      applyFrame(0);
+      requestAnimationFrame(updateFrame);
+    };
+
+    if (spriteSheet.complete) {
+      start();
+      return;
+    }
+
+    spriteSheet.addEventListener("load", start, { once: true });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initDynamicSprite, {
+      once: true,
+    });
+  } else {
+    initDynamicSprite();
+  }
+
+  // Astroのクライアント遷移対応
+  document.addEventListener("astro:page-load", initDynamicSprite);
+</script>

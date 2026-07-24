@@ -1,0 +1,51 @@
+---
+import Layout from "@/layouts/SelectLayout.astro";
+
+import SelectList from "@/components/SelectList.astro";
+
+import { SITE_TITLE } from "@/consts.ts";
+
+const siteTitle = "アヒルのしっぽ | " + SITE_TITLE;
+---
+
+<Layout
+  header={{
+    name: "アヒルのしっぽ",
+    logoIcon: "logo-icon-tail",
+    url: "/duck-tail/",
+  }}
+  title={siteTitle}
+  description="不定期更新のブログ。"
+  canvas="canvas-tail"
+  index={true}
+  breadcrumb={[
+    { name: "PineDuck", symbol: "symbol-pineduck", url: "/" },
+    { name: "アヒルのしっぽ", symbol: "symbol-tail" },
+  ]}
+  prevUrl="/"
+>
+  <p>アヒルのしっぽは、好きなことを不定期で書いているブログです。</p>
+  <p>開発開始時期は未定です。</p>
+
+  <h2>サイトの情報</h2>
+  <SelectList
+    items={[
+      {
+        symbol: "symbol-web",
+        title: "アヒルのしっぽ",
+        url: "https://duck-tail.pineduck.jp/",
+      },
+    ]}
+  />
+
+  <h2>お問い合わせ</h2>
+  <SelectList
+    items={[
+      {
+        symbol: "symbol-email",
+        title: "お問い合わせフォーム",
+        url: "/contact-form/?prev=%2Fduck-tail%2F&app=pineduck-tail",
+      },
+    ]}
+  />
+</Layout>

@@ -1,0 +1,67 @@
+---
+import type { BreadcrumbTrail } from "@/types/breadcrumb.ts";
+
+import Head from "@/components/Head.astro";
+import Header from "@/components/Header.astro";
+import ScrollDown from "@/components/ScrollDown.astro";
+import Footer from "@/components/Footer.astro";
+import DynamicSprite from "@/components/DynamicSprite.astro";
+
+import "@/styles/select.css";
+
+interface Props {
+  header: {
+    name: string;
+    logoIcon: string;
+    url: string;
+  };
+  title: string;
+  description: string;
+  canvas: string;
+  index?: boolean;
+  prevUrl?: string;
+  nextUrl?: string;
+  breadcrumb?: BreadcrumbTrail;
+}
+
+const {
+  header,
+  title,
+  description,
+  canvas,
+  index,
+  prevUrl,
+  nextUrl,
+  breadcrumb,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <Head
+      title={title}
+      description={description}
+      index={index}
+      breadcrumb={breadcrumb}
+    />
+  </head>
+
+  <body ontouchstart="">
+    <Header name={header.name} logoIcon={header.logoIcon} url={header.url} />
+    <main>
+      <div class="slot-container">
+        <section class="canvas-container">
+          <DynamicSprite name={canvas} alt={title} />
+        </section>
+        <section id="contents-container">
+          <div class="contents">
+            <slot />
+          </div>
+        </section>
+      </div>
+      <ScrollDown />
+    </main>
+    <Footer prevUrl={prevUrl} nextUrl={nextUrl} breadcrumb={breadcrumb} />
+  </body>
+</html>

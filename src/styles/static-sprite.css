@@ -1,0 +1,28 @@
+.static-sprite {
+  display: inline-block;
+  width: var(--sprite-w-final);
+  height: var(--sprite-h-final);
+  overflow: hidden;
+  line-height: 0;
+}
+
+.static-sprite .static-sprite-sheet {
+  display: block;
+  width: calc(
+    var(--sprite-sheet-w) * (var(--sprite-w-final) / var(--sprite-original-w))
+  );
+  max-width: none;
+  height: calc(
+    var(--sprite-sheet-h) * (var(--sprite-h-final) / var(--sprite-original-h))
+  );
+  image-rendering: pixelated;
+  transform: translate(
+    calc(
+      var(--sprite-bg-x) * (var(--sprite-w-final) / var(--sprite-original-w))
+    ),
+    calc(
+      var(--sprite-bg-y) * (var(--sprite-h-final) / var(--sprite-original-h))
+    )
+  );
+  transform-origin: top left;
+}

@@ -17,9 +17,13 @@
 pineduck/
 ├── .github/
 │   ├── ISSUE_TEMPLATE/
-│       ├── feat.md
-│       └── fix.md
+│   │   ├── feat.md
+│   │   └── fix.md
 │   └── pull_request_template.md
+├── docs/
+│   ├── images/
+│   │   └── *.webp
+│   └── sprites.md
 ├── public/
 │   └── favicon.svg
 ├── src/
@@ -167,3 +171,7 @@ npm run preview
 ## 貢献
 
 このプロジェクトへの貢献に興味がある場合は、[CONTRIBUTING.md](./CONTRIBUTING.md) を参照してください。
+
+## ドキュメント
+
+- [スプライトの使用](./docs/sprites.md)

@@ -1,0 +1,86 @@
+---
+import Layout from "@/layouts/ArticleLayout.astro";
+
+import { SITE_TITLE } from "@/consts.ts";
+
+const pageTitle = "特定商取引法に基づく表記 | " + SITE_TITLE;
+---
+
+<Layout
+  header={{
+    name: "PineDuck",
+    logoIcon: "logo-icon-pineduck",
+    url: "/",
+  }}
+  title={pageTitle}
+  description="PineDuckの特定商取引法に基づく表記。"
+  breadcrumb={[
+    { name: "PineDuck", symbol: "symbol-pineduck", url: "/" },
+    { name: "特定商取引法に基づく表記", symbol: "symbol-commerce" },
+  ]}
+  prevUrl="/"
+>
+  <h1>特定商取引法に基づく表記</h1>
+
+  <section>
+    <h2>屋号</h2>
+    <p>PineDuck (パインダック)</p>
+  </section>
+
+  <section>
+    <h2>代表者</h2>
+    <p>山本由愛 (ヤマモトユメ)</p>
+  </section>
+
+  <section>
+    <h2>所在地</h2>
+    <p>〒104-0061</p>
+    <p>東京都中央区銀座8-10-5 DENSANビル G-117758</p>
+  </section>
+
+  <section>
+    <h2>メールアドレス</h2>
+    <p>hello@pineduck.jp</p>
+    <p>
+      お問い合わせについては、<a href="/contact/">お問い合わせフォーム</a
+      >までお願い致します。
+    </p>
+  </section>
+
+  <section>
+    <h2>電話番号</h2>
+    <p>
+      電話でのお問い合わせは受け付けておりません。お問い合わせについては、<a
+        href="/contact/">お問い合わせフォーム</a
+      >までお願い致します。
+    </p>
+    <p>
+      電話番号の開示をご希望の場合は、メールまで理由をご記載のうえ、ご請求ください。ご請求があった場合には速やかに開示致します。
+    </p>
+  </section>
+
+  <section>
+    <h2>返金</h2>
+    <p>
+      商品の性質上、基本的に返金は受け付けておりません。ご了承ください。ただし、バグなどの致命的な問題があった場合は個別に対応させていただきます。その際はお手数をおかけしますが、お問い合わせください。
+    </p>
+    <p>
+      お問い合わせについては、<a href="/contact/">お問い合わせフォーム</a
+      >までお願い致します。
+    </p>
+  </section>
+
+  <section>
+    <h2>決済</h2>
+    <p>
+      iOS アプリの場合は Apple の提供する決済システム、Android アプリの場合は
+      Google の提供する決済システムを利用しております。
+    </p>
+    <p>決済が完了しだい、ただちに有料機能をご利用頂けます。</p>
+  </section>
+
+  <section>
+    <h2>価格</h2>
+    <p>各商品ページに記載されている価格(税込)とします。</p>
+  </section>
+</Layout>

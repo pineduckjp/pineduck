@@ -1,0 +1,83 @@
+---
+import Layout from "@/layouts/ArticleLayout.astro";
+
+import { SITE_TITLE } from "@/consts.ts";
+
+const pageTitle = "プライバシーポリシー | " + SITE_TITLE;
+---
+
+<Layout
+  header={{
+    name: "PineDuck",
+    logoIcon: "logo-icon-pineduck",
+    url: "/",
+  }}
+  title={pageTitle}
+  description="サイトのご利用にあたってのプライバシーポリシー。"
+  breadcrumb={[
+    { name: "PineDuck", symbol: "symbol-pineduck", url: "/" },
+    { name: "プライバシーポリシー", symbol: "symbol-privacy" },
+  ]}
+  prevUrl="/"
+>
+  <h1>プライバシーポリシー</h1>
+
+  <section>
+    <p>
+      当方は、本サイトの利用者の個人情報の適切な保護を重要な責務と考え、以下の通りプライバシーポリシーを定めます。
+    </p>
+  </section>
+
+  <section>
+    <h2>第1条 (取得する情報)</h2>
+    <p>本サイトでは、以下の情報を取得する場合があります。</p>
+    <ul>
+      <li>
+        お問い合わせフォーム等で利用者が入力した情報(氏名、メールアドレス等)
+      </li>
+      <li>アクセスログ(IPアドレス、ブラウザ情報、閲覧日時など)</li>
+      <li>
+        Cookie や類似技術を用いたアクセス解析データ(Google Analytics など)
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>第2条 (利用目的)</h2>
+    <p>取得した情報は以下の目的で利用します。</p>
+    <ul>
+      <li>お問い合わせへの対応</li>
+      <li>サイトの改善および利用状況の分析</li>
+      <li>不正アクセスの防止</li>
+      <li>法令順守のため</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>第3条 (個人情報の第三者提供)</h2>
+    <p>
+      法令に基づく場合を除き、利用者の同意なく個人情報を第三者に提供することはありません。
+    </p>
+  </section>
+
+  <section>
+    <h2>第4条 (委託)</h2>
+    <p>
+      当方はアクセス解析などの目的で外部サービスを利用する場合があります。これらのサービスには必要な範囲で情報を提供します。
+    </p>
+  </section>
+
+  <section>
+    <h2>第5条 (安全管理措置)</h2>
+    <p>
+      取得した情報について、不正アクセス・漏えい防止のための合理的な措置を講じます。
+    </p>
+  </section>
+
+  <section>
+    <h2>第6条 (プライバシーポリシーの変更)</h2>
+    <p>
+      当方は本ポリシーを変更できるものとし、変更後のポリシーは本サイトに掲載された時点で効力を持ちます。
+    </p>
+  </section>
+</Layout>

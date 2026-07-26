@@ -51,20 +51,26 @@ pineduck/
 │   │       └── static/
 │   │           └── *.json
 │   ├── layouts/
+│   │   ├── ArticleLayout.astro
 │   │   └── SelectLayout.astro
 │   ├── pages/
 │   │   ├── art/
-│   │   │   └── index.astro
+│   │   │   ├── index.astro
+│   │   │   ├── privacy.astro
+│   │   │   └── terms.astro
 │   │   ├── build/
 │   │   │   └── index.astro
 │   │   ├── cafe/
 │   │   │   └── index.astro
 │   │   ├── camp/
 │   │   │   └── index.astro
+│   │   ├── commerce.astro
 │   │   ├── cooking/
 │   │   │   └── index.astro
 │   │   ├── diary/
-│   │   │   └── index.astro
+│   │   │   ├── index.astro
+│   │   │   ├── privacy.astro
+│   │   │   └── terms.astro
 │   │   ├── duck-editor/
 │   │   │   └── index.astro
 │   │   ├── duck-portfolio/
@@ -75,12 +81,15 @@ pineduck/
 │   │   │   └── index.astro
 │   │   ├── farm/
 │   │   │   └── index.astro
+│   │   ├── index.astro
+│   │   ├── privacy.astro
 │   │   ├── sewing/
 │   │   │   └── index.astro
 │   │   ├── story/
 │   │   │   └── index.astro
-│   │   └── index.astro
+│   │   └── terms.astro
 │   ├── styles/
+│   │   ├── article.css
 │   │   ├── dynamic-sprite.css
 │   │   ├── footer.css
 │   │   ├── global.css
@@ -94,6 +103,8 @@ pineduck/
 ├── CLAUDE.md
 ├── CONTRIBUTING.md
 ├── README.md
+├── .gitignore
+├── .prettierrc.mjs
 ├── astro.config.mjs
 ├── eslint.config.mjs
 ├── package-lock.json

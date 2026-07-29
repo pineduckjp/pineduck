@@ -1,0 +1,147 @@
+---
+import Layout from "@/layouts/PrLayout.astro";
+import OptImg from "@/components/OptImg.astro";
+
+import { SITE_TITLE } from "@/consts.ts";
+
+import previewImg1 from "@/assets/images/art/preview1.webp";
+import previewImg2 from "@/assets/images/art/preview2.webp";
+import previewImg3 from "@/assets/images/art/preview3.webp";
+import exampleImg1 from "@/assets/images/art/example1.webp";
+import exampleImg2 from "@/assets/images/art/example2.webp";
+import exampleImg3 from "@/assets/images/art/example3.webp";
+
+const pageTitle = `PineDuckアートPR | ${SITE_TITLE}`;
+---
+
+<Layout
+  header={{
+    name: "PineDuckアート",
+    logoIcon: "logo-icon-art",
+    url: "/art/",
+  }}
+  title={pageTitle}
+  description="PineDuckアートのPRページ。"
+  prevUrl="/art/"
+  breadcrumb={[
+    { name: "PineDuck", symbol: "symbol-pineduck", url: "/" },
+    { name: "PineDuckアート", symbol: "symbol-art", url: "/art/" },
+    { name: "PineDuckアートPR", symbol: "symbol-web" },
+  ]}
+  featureSection={{
+    title: "デッサンの基礎をゲーム感覚で学ぼう",
+    slides: [
+      {
+        image: previewImg1,
+        alt: "アプリ画面プレビュー1",
+        caption: "週1回講座を受けよう",
+      },
+      {
+        image: previewImg2,
+        alt: "アプリ画面プレビュー2",
+        caption: "締切までに作品を提出!",
+      },
+      {
+        image: previewImg3,
+        alt: "アプリ画面プレビュー3",
+        caption: "チャットで作品を添削!(質問も可能)",
+      },
+    ],
+  }}
+  mvpDownloadSection={{
+    message: [
+      "MVPでは、講座0と講座1の閲覧が可能です。テスト用のアプリなので、課金などは実際にはされません。日付などもテスト用のダミーです。MVPは、iOS版、Android版、Web版の3種類を公開予定です。",
+      "Web版は、そのままリンクを開いてご利用ください。iOS版は、TestFlightからダウンロード可能です。Android版は、フォームでメールアドレスを送信していただければ、ダウンロードリンクを送信します。",
+    ],
+    url: {
+      web: "https://art.pineduck.jp/",
+      ios: "https://testflight.apple.com/join/KFfraUxP",
+      android: "/art/mvp-request/",
+    },
+  }}
+  downloadSection={{
+    message: [
+      "App Store, Google Play, Web で公開予定です。公開され次第、こちらにリンクを掲載します。",
+    ],
+  }}
+  pricesSection={{
+    plans: [
+      {
+        name: "無料",
+        price: "￥0 / 月",
+        features: ["講座0、1の閲覧"],
+      },
+      {
+        name: "ベーシック",
+        price: "￥500 / 月",
+        features: ["全ての講座の閲覧", "進捗の同期", "作品の提出"],
+      },
+      {
+        name: "メンター",
+        price: "￥15,000 / 月",
+        features: ["添削なしプランの機能", "チャットでの作品添削、質問"],
+        attention: "定員10名",
+      },
+    ],
+  }}
+  infoSection={{
+    url: {
+      terms: "/art/terms/?prev=%2Fart%2Fpr%2F",
+      privacy: "/art/privacy/?prev=%2Fart%2Fpr%2F",
+    },
+  }}
+  contactSection={{
+    url: "/contact/?prev=%2Fart%2Fpr%2F&app=pineduck-art",
+  }}
+>
+  <section class="teachers">
+    <h2 class="box-title">講師紹介</h2>
+    <div class="section-container border-container">
+      <p>
+        総合芸術高等学校、武蔵野美術大学で油絵を学んだ講師が、デッサンの基礎をわかりやすく解説します。
+      </p>
+      <div class="drawing-container">
+        <OptImg src={exampleImg1} alt="講師作例1" />
+        <OptImg src={exampleImg2} alt="講師作例2" />
+        <OptImg src={exampleImg3} alt="講師作例3" />
+      </div>
+      <a
+        class="drawing-more"
+        href="https://duck-portfolio.pineduck.jp/?prev=https%3A%2F%2Fpineduck.jp%2Fart%2Fpr%2F"
+        >もっと見る &gt;</a
+      >
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .drawing-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 30px 0;
+  }
+
+  .drawing-container img {
+    display: block;
+    width: auto;
+    height: 130px;
+    border: 1.5px solid var(--dark);
+  }
+
+  .drawing-more {
+    display: inline-block;
+    width: 100%;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    border: 1.5px solid var(--dark);
+  }
+
+  .drawing-more:hover {
+    background-color: var(--middle);
+  }
+</style>

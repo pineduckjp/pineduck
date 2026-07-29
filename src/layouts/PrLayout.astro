@@ -1,0 +1,381 @@
+---
+import type { ImageMetadata } from "astro";
+import type { BreadcrumbTrail } from "@/types/breadcrumb.ts";
+
+import Head from "@/components/Head.astro";
+import Header from "@/components/Header.astro";
+import ScrollDown from "@/components/ScrollDown.astro";
+import Footer from "@/components/Footer.astro";
+import OptImg from "@/components/OptImg.astro";
+import StaticSprite from "@/components/StaticSprite.astro";
+import SelectList from "@/components/SelectList.astro";
+
+import "@/styles/global.css";
+import "@/styles/pr.css";
+
+interface Props {
+  header: {
+    name: string;
+    logoIcon: string;
+    url: string;
+  };
+  title: string;
+  description: string;
+  prevUrl: string;
+  nextUrl?: string;
+  breadcrumb?: BreadcrumbTrail;
+  featureSection: {
+    title: string;
+    slides: {
+      image: ImageMetadata;
+      alt: string;
+      caption: string;
+    }[];
+  };
+  mvpDownloadSection?: {
+    message?: string[];
+    url?: {
+      web?: string;
+      ios?: string;
+      android?: string;
+    };
+  };
+  downloadSection: {
+    message?: string[];
+    url?: {
+      web?: string;
+      ios?: string;
+      android?: string;
+    };
+  };
+  pricesSection: {
+    plans: {
+      name: string;
+      price: string;
+      features: string[];
+      attention?: string;
+    }[];
+  };
+  infoSection: {
+    url: {
+      guide?: string;
+      terms?: string;
+      privacy?: string;
+    };
+  };
+  contactSection: {
+    url: string;
+  };
+}
+
+const {
+  header,
+  title,
+  description,
+  prevUrl,
+  nextUrl,
+  breadcrumb,
+  featureSection,
+  mvpDownloadSection = undefined,
+  downloadSection,
+  pricesSection,
+  infoSection,
+  contactSection,
+} = Astro.props;
+
+const isMvpWeb = mvpDownloadSection?.url?.web ?? false;
+const isMvpIos = mvpDownloadSection?.url?.ios ?? false;
+const isMvpAndroid = mvpDownloadSection?.url?.android ?? false;
+let mvpDownloadList = [];
+if (isMvpWeb)
+  mvpDownloadList.push({
+    symbol: "symbol-download",
+    title: "Web版(アプリページへ)",
+    url: mvpDownloadSection?.url?.web,
+    openInNewTab: true,
+  });
+if (isMvpIos)
+  mvpDownloadList.push({
+    symbol: "symbol-download",
+    title: "iOS版(TestFlightへ)",
+    url: mvpDownloadSection?.url?.ios,
+    openInNewTab: true,
+  });
+if (isMvpAndroid)
+  mvpDownloadList.push({
+    symbol: "symbol-edit",
+    title: "Android版(MVP申請メールフォームヘ)",
+    url: mvpDownloadSection?.url?.android,
+  });
+
+const isGuide = infoSection?.url?.guide ?? false;
+const isTerms = infoSection?.url?.terms ?? false;
+const isPrivacy = infoSection?.url?.privacy ?? false;
+const infoList = [];
+if (isGuide)
+  infoList.push({
+    symbol: "symbol-guide",
+    title: "使い方ガイド",
+    url: infoSection?.url?.guide,
+  });
+if (isTerms)
+  infoList.push({
+    symbol: "symbol-terms",
+    title: "利用規約",
+    url: infoSection?.url?.terms,
+  });
+if (isPrivacy)
+  infoList.push({
+    symbol: "symbol-privacy",
+    title: "プライバシーポリシー",
+    url: infoSection?.url?.privacy,
+  });
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <Head title={title} description={description} index={true} />
+  </head>
+  <body ontouchend="">
+    <Header name={header.name} logoIcon={header.logoIcon} url={header.url} />
+    <main id="contents-container">
+      <section class="features">
+        <h2>{featureSection.title}</h2>
+        <div class="section-container border-container">
+          <div class="slide-container">
+            <button class="slide-btn" id="slide-prev" aria-label="前へ">
+              <span>&lt;</span>
+            </button>
+            <div class="slide-list">
+              {
+                featureSection.slides.map((slide) => (
+                  <div
+                    class="slide"
+                    id={`slide-${featureSection.slides.indexOf(slide)}`}
+                  >
+                    <OptImg
+                      class="slide-image"
+                      src={slide.image}
+                      alt={slide.alt}
+                    />
+                    <h3 class="slide-title">{slide.caption}</h3>
+                  </div>
+                ))
+              }
+            </div>
+            <button class="slide-btn" id="slide-next" aria-label="次へ">
+              <span>&gt;</span>
+            </button>
+          </div>
+          <div class="slide-dots">
+            {
+              featureSection.slides.map((_, index) => (
+                <button
+                  class={`slide-dot ${index === 0 ? "active" : ""}`}
+                  aria-label={`スライド${index + 1}`}
+                />
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      {
+        mvpDownloadSection && (
+          <section class="mvp-download">
+            <h2>MVP（簡易版）ダウンロード</h2>
+            {mvpDownloadSection.message && (
+              <>
+                {mvpDownloadSection.message.map((message) => (
+                  <p>{message}</p>
+                ))}
+              </>
+            )}
+            <SelectList items={mvpDownloadList} />
+          </section>
+        )
+      }
+
+      <section class="download" id="download">
+        <h2>ダウンロード</h2>
+        <div class="section-container border-container">
+          {
+            downloadSection.message && (
+              <>
+                {downloadSection.message.map((message) => (
+                  <p>{message}</p>
+                ))}
+              </>
+            )
+          }
+          <div class="store-badge-container">
+            {
+              downloadSection.url?.ios && (
+                <a
+                  class="appstore-badge"
+                  href={downloadSection.url?.ios}
+                  aria-label="App Storeで入手"
+                >
+                  <img src="/appstore-badge-jp.svg" alt="App Storeで入手" />
+                </a>
+              )
+            }
+            {
+              downloadSection.url?.android && (
+                <a
+                  class="playstore-badge"
+                  href={downloadSection.url?.android}
+                  aria-label="Google Playで入手"
+                >
+                  <img src="/playstore-badge-jp.svg" alt="Google Playで入手" />
+                </a>
+              )
+            }
+            {
+              downloadSection.url?.web && (
+                <a
+                  class="web-badge"
+                  href={downloadSection.url?.web}
+                  aria-label="Webアプリで始める。PWA対応アプリ。"
+                >
+                  <StaticSprite name="symbol-web" />
+                  <span class="web-badge-text">
+                    <span>Webアプリで始める</span>
+                    <small>PWA対応アプリ</small>
+                  </span>
+                </a>
+              )
+            }
+          </div>
+        </div>
+      </section>
+
+      <section class="prices">
+        <h2>料金プラン</h2>
+        <div class="section-container border-container">
+          {
+            pricesSection.plans.map((plan) => (
+              <div class="plan-container">
+                <h3>{plan.name}</h3>
+                <p>{plan.price}</p>
+                <ul>
+                  {plan.features.map((feature) => (
+                    <li>
+                      <span>
+                        <StaticSprite name="symbol-check" />
+                      </span>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                {plan.attention && (
+                  <div class="attention">
+                    <StaticSprite name="symbol-warning" />
+                    <span>{plan.attention}</span>
+                  </div>
+                )}
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      <slot />
+
+      <section class="info">
+        <h2>アプリの情報</h2>
+        <div class="section-container">
+          <SelectList items={infoList} />
+        </div>
+      </section>
+
+      <section class="contact">
+        <h2>お問い合わせ</h2>
+        <div class="section-container">
+          <SelectList
+            items={[
+              {
+                symbol: "symbol-email",
+                title: "お問い合わせフォーム",
+                url: contactSection.url,
+              },
+            ]}
+          />
+        </div>
+      </section>
+      <ScrollDown />
+    </main>
+    <Footer prevUrl={prevUrl} nextUrl={nextUrl} breadcrumb={breadcrumb} />
+  </body>
+</html>
+
+<script>
+  let activeSlideIndex = 0;
+
+  const slideList = document.querySelector(".slide-list") as HTMLDivElement;
+  const slides = Array.from(
+    document.querySelectorAll(".slide"),
+  ) as HTMLDivElement[];
+  const slideDots = Array.from(
+    document.querySelectorAll(".slide-dot"),
+  ) as HTMLButtonElement[];
+  const prevBtn = document.getElementById("slide-prev") as HTMLButtonElement;
+  const nextBtn = document.getElementById("slide-next") as HTMLButtonElement;
+
+  if (slideList && slides.length > 0) {
+    function updateSlideDots() {
+      slideDots.forEach((dot, index) => {
+        dot.classList.toggle("active", index === activeSlideIndex);
+      });
+    }
+
+    function goToSlide(index: number) {
+      const safeIndex = (index + slides.length) % slides.length;
+      slides[safeIndex].scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "start",
+      });
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // 今フレームで一番見えている slide を選ぶ
+        let bestEntry: IntersectionObserverEntry | null = null;
+        for (const entry of entries) {
+          if (
+            !bestEntry ||
+            entry.intersectionRatio > bestEntry.intersectionRatio
+          ) {
+            bestEntry = entry;
+          }
+        }
+
+        if (bestEntry && bestEntry.isIntersecting) {
+          const idx = slides.indexOf(bestEntry.target as HTMLDivElement);
+          if (idx !== -1 && idx !== activeSlideIndex) {
+            activeSlideIndex = idx;
+            updateSlideDots();
+          }
+        }
+      },
+      {
+        root: slideList,
+        threshold: [0.4, 0.6, 0.8], // 体感で調整
+      },
+    );
+
+    slides.forEach((slide) => observer.observe(slide));
+
+    prevBtn?.addEventListener("click", () => goToSlide(activeSlideIndex - 1));
+    nextBtn?.addEventListener("click", () => goToSlide(activeSlideIndex + 1));
+
+    // ドットを押したらその slide へ
+    slideDots.forEach((dot, index) => {
+      dot.addEventListener("click", () => goToSlide(index));
+    });
+
+    updateSlideDots();
+  }
+</script>

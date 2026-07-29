@@ -1,0 +1,241 @@
+main {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+main section {
+  max-width: 600px;
+  padding: 0 15px;
+  margin: 15px auto;
+}
+
+main section:not(:first-child) {
+  margin-top: 30px;
+}
+
+section h1,
+section h2,
+section h3,
+section p {
+  margin: 15px 0;
+}
+
+section h1,
+section h2 {
+  font-size: 25px;
+  text-align: center;
+}
+
+.border-container {
+  padding: 20px;
+  border: 1.5px solid var(--dark);
+}
+
+/* Feature Section */
+
+.slide-container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+}
+
+.slide-list {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+  overflow: auto hidden;
+  scroll-snap-type: x mandatory;
+}
+
+.slide-list::-webkit-scrollbar {
+  display: none;
+}
+
+.slide {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 100%;
+  scroll-snap-align: start;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.slide-image {
+  width: 100%;
+  height: 100%;
+  max-height: 50vh;
+  object-fit: contain;
+}
+
+.slide-title {
+  text-align: center;
+}
+
+.slide-btn {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  padding: 6px;
+  cursor: pointer;
+  background: none;
+  border: 1.5px solid var(--dark);
+}
+
+.slide-btn:hover {
+  background-color: var(--middle);
+}
+
+.slide-dots {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.slide-dot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  cursor: pointer;
+  background: none;
+  border: 1.5px solid var(--dark);
+  transition: background-color 0.25s ease;
+}
+
+.slide-dot.active {
+  background-color: var(--dark);
+}
+
+/* Download Section */
+
+.store-badge-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.appstore-badge,
+.playstore-badge {
+  display: block;
+  width: auto;
+  min-width: 0;
+  height: 40px;
+}
+
+.appstore-badge img,
+.playstore-badge img {
+  width: auto;
+  height: 100%;
+}
+
+.web-badge {
+  box-sizing: border-box;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: 40px;
+  padding: 0 10px;
+  text-decoration: none;
+  border: 1.5px solid var(--dark);
+}
+
+.web-badge-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  line-height: 1;
+  text-align: center;
+}
+
+.web-badge-text small {
+  margin-top: -2px;
+  font-size: 12px;
+}
+
+/* Prices Section */
+
+.prices .section-container {
+  display: flex;
+  padding: 20px 0;
+}
+
+.plan-container {
+  flex: 1;
+  padding: 0 20px;
+  border-right: 1.5px solid var(--middle);
+}
+
+.plan-container:last-child {
+  border-right: none;
+}
+
+@media (width <= 550px) {
+  .prices .section-container {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .plan-container {
+    padding: 20px 0;
+    border-right: none;
+    border-bottom: 1.5px solid var(--middle);
+  }
+
+  .plan-container:first-child {
+    padding-top: 0;
+  }
+
+  .plan-container:last-child {
+    border-bottom: none;
+  }
+}
+
+.plan-container h3,
+.plan-container p {
+  margin: 3px 0;
+  text-align: center;
+}
+
+.plan-container h3 {
+  font-size: 20px;
+}
+
+.plan-container ul {
+  padding: 0;
+  margin: 15px 0;
+  list-style: none;
+}
+
+.plan-container li {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.plan-container .attention {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 5px 10px;
+  text-align: center;
+  border: 1.5px solid var(--red);
+}
+
+.plan-container .attention span {
+  margin-left: 8px;
+  color: var(--red);
+}

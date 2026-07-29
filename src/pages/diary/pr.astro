@@ -1,0 +1,86 @@
+---
+import Layout from "@/layouts/PrLayout.astro";
+
+import { SITE_TITLE } from "@/consts.ts";
+
+import previewImg1 from "@/assets/images/diary/preview1.webp";
+import previewImg2 from "@/assets/images/diary/preview2.webp";
+import previewImg3 from "@/assets/images/diary/preview3.webp";
+import previewImg4 from "@/assets/images/diary/preview4.webp";
+
+const pageTitle = `PineDuckダイアリーPR | ${SITE_TITLE}`;
+---
+
+<Layout
+  header={{
+    name: "PineDuckダイアリー",
+    logoIcon: "logo-icon-diary",
+    url: "/diary/",
+  }}
+  title={pageTitle}
+  description="PineDuckダイアリーのPRページ。"
+  prevUrl="/diary/"
+  breadcrumb={[
+    { name: "PineDuck", symbol: "symbol-pineduck", url: "/" },
+    { name: "PineDuckダイアリー", symbol: "symbol-diary", url: "/diary/" },
+    { name: "PineDuckダイアリーPR", symbol: "symbol-web" },
+  ]}
+  featureSection={{
+    title: "デッサンの基礎をゲーム感覚で学ぼう",
+    slides: [
+      {
+        image: previewImg1,
+        alt: "アプリ画面プレビュー1",
+        caption: "日記専用アプリ。だから振り返りやすい。",
+      },
+      {
+        image: previewImg2,
+        alt: "アプリ画面プレビュー2",
+        caption: "毎日感想がもらえる。だから続けやすい。",
+      },
+      {
+        image: previewImg3,
+        alt: "アプリ画面プレビュー3",
+        caption: "ダークモードに対応。目にやさしい。",
+      },
+      {
+        image: previewImg4,
+        alt: "アプリ画面プレビュー4",
+        caption: "天気or気分を記録できる。だから振り返りが楽しい。",
+      },
+    ],
+  }}
+  downloadSection={{
+    message: ["App Storeで公開中です。"],
+    url: {
+      ios: "https://apps.apple.com/jp/app/pineduck%E3%83%80%E3%82%A4%E3%82%A2%E3%83%AA%E3%83%BC/id6755546005?itscg=30200&itsct=apps_box_badge&mttnsubad=6755546005",
+    },
+  }}
+  pricesSection={{
+    plans: [
+      {
+        name: "無料",
+        price: "￥0 / 月",
+        features: ["日記の端末内保存", "AI からの感想 (2回/日)"],
+      },
+      {
+        name: "プレミアム",
+        price: "￥500 / 月",
+        features: [
+          "日記の端末内保存",
+          "日記のクラウド同期",
+          "AI からの感想 (10回/日)",
+        ],
+      },
+    ],
+  }}
+  infoSection={{
+    url: {
+      terms: "/diary/terms/?prev=%2Fdiary%2Fpr%2F",
+      privacy: "/diary/privacy/?prev=%2Fdiary%2Fpr%2F",
+    },
+  }}
+  contactSection={{
+    url: "/contact/?prev=%2Fdiary%2Fpr%2F&app=pineduck-diary",
+  }}
+/>

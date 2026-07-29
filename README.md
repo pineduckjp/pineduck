@@ -15,6 +15,10 @@
 
 ```text
 pineduck/
+├── .vscode/
+│   ├── extensions.json
+│   ├── launch.json
+│   └── settings.json
 ├── .github/
 │   ├── ISSUE_TEMPLATE/
 │   │   ├── feat.md
@@ -25,11 +29,18 @@ pineduck/
 │   │   └── *.webp
 │   └── sprites.md
 ├── public/
-│   └── favicon.svg
+│   ├── appstore-badge-jp.svg
+│   ├── favicon.svg
+│   └── playstore-badge-jp.svg
 ├── src/
 │   ├── assets/
 │   │   ├── fonts/
 │   │   │   └── *.woff2
+│   │   ├── images/
+│   │   │   ├── art/
+│   │   │   │   └── *.webp
+│   │   │   └── diary/
+│   │   │       └── *.webp
 │   │   └── sprites/
 │   │       ├── dynamic/
 │   │       │   └── *.webp
@@ -52,10 +63,12 @@ pineduck/
 │   │           └── *.json
 │   ├── layouts/
 │   │   ├── ArticleLayout.astro
+│   │   ├── PrLayout.astro
 │   │   └── SelectLayout.astro
 │   ├── pages/
 │   │   ├── art/
 │   │   │   ├── index.astro
+│   │   │   ├── pr.astro
 │   │   │   ├── privacy.astro
 │   │   │   └── terms.astro
 │   │   ├── build/
@@ -69,6 +82,7 @@ pineduck/
 │   │   │   └── index.astro
 │   │   ├── diary/
 │   │   │   ├── index.astro
+│   │   │   ├── pr.astro
 │   │   │   ├── privacy.astro
 │   │   │   └── terms.astro
 │   │   ├── duck-editor/
@@ -93,6 +107,7 @@ pineduck/
 │   │   ├── dynamic-sprite.css
 │   │   ├── footer.css
 │   │   ├── global.css
+│   │   ├── pr.css
 │   │   ├── select.css
 │   │   └── static-sprite.css
 │   ├── types/

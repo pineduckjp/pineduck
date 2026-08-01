@@ -1,0 +1,124 @@
+---
+import {
+  PUBLIC_ANDROID_MVP_REQUEST_API_URL,
+  PUBLIC_TURNSTILE_SITE_KEY,
+} from "astro:env/client";
+
+import Layout from "@/layouts/FormLayout.astro";
+
+import { SITE_TITLE } from "@/consts.ts";
+
+const pageTitle = `PineDuckアート Android版 MVP申請 | ${SITE_TITLE}`;
+---
+
+<Layout
+  header={{
+    name: "PineDuckアート",
+    logoIcon: "logo-icon-art",
+    url: "/art/",
+  }}
+  title={pageTitle}
+  description="PineDuckアート Android版の MVP申請フォーム。"
+  breadcrumb={[
+    { name: "PineDuck", symbol: "symbol-pineduck", url: "/" },
+    { name: "PineDuckアート", symbol: "symbol-art" },
+    { name: "Android版MVP申請", symbol: "symbol-edit" },
+  ]}
+  prevUrl="/art/"
+>
+  <h1>PineDuckアート Android版 MVP申請</h1>
+
+  <section>
+    <p>
+      PineDuckアートMVPアプリ(Android版)のダウンロードをご希望の方は、以下のフォームにメールアドレスをご入力のうえ、ご送信ください。ダウンロードリンクをお送り致します。
+    </p>
+    <p>
+      1〜2営業日ほど待っても返信がない場合は、お手数をおかけしますが、再度お問い合わせください。
+    </p>
+  </section>
+
+  <section>
+    <h2>PineDuckアート Android版 MVP申請フォーム</h2>
+    <form id="form">
+      <div>
+        <label>メールアドレス</label>
+        <input type="email" name="email" />
+      </div>
+
+      <!-- Turnstile ウィジェット -->
+      <div id="turnstile-container"></div>
+
+      <p id="form-status"></p>
+      <button type="submit" class="submit-button">送信</button>
+    </form>
+  </section>
+</Layout>
+
+{
+  PUBLIC_TURNSTILE_SITE_KEY && (
+    <script
+      src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+      async
+      defer
+      is:inline
+    />
+  )
+}
+
+<script
+  define:vars={{
+    PUBLIC_TURNSTILE_SITE_KEY,
+    PUBLIC_ANDROID_MVP_REQUEST_API_URL,
+  }}
+  is:inline
+>
+  const form = document.getElementById("form");
+  const status = document.getElementById("form-status");
+  let widgetId;
+
+  window.onload = function () {
+    widgetId = turnstile.render("#turnstile-container", {
+      sitekey: PUBLIC_TURNSTILE_SITE_KEY,
+      theme: "light",
+      size: "normal",
+    });
+  };
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    status.textContent = "送信中...";
+
+    const formData = new FormData(form);
+    const payload = Object.fromEntries(formData);
+
+    // Turnstile トークン取得
+    const turnstileResponse = turnstile.getResponse(widgetId);
+    if (!turnstileResponse) {
+      status.textContent =
+        "認証が完了していません。しばらく待ってから再度お試しください。";
+      return;
+    }
+    payload.turnstileToken = turnstileResponse;
+
+    try {
+      const res = await fetch(PUBLIC_ANDROID_MVP_REQUEST_API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        status.textContent = "送信が完了しました。";
+        // フォームリセット
+        form.reset();
+        // Turnstile トークンリセット
+        turnstile.reset(widgetId);
+      } else {
+        status.textContent = `エラー: ${data.error || "送信に失敗しました。"}`;
+      }
+    } catch (err) {
+      status.textContent = err.message || "ネットワークエラーが発生しました。";
+    }
+  });
+</script>

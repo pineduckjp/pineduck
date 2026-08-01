@@ -2,13 +2,46 @@
 import { defineConfig, fontProviders } from "astro/config";
 
 import favicons from "astro-favicons";
+import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://pineduck.jp/",
+
   devToolbar: {
     enabled: false,
   },
+
+  env: {
+    schema: {
+      PUBLIC_CONTACT_API_URL: {
+        type: "string",
+        context: "client",
+        access: "public",
+      },
+      PUBLIC_ANDROID_MVP_REQUEST_API_URL: {
+        type: "string",
+        context: "client",
+        access: "public",
+      },
+      PUBLIC_TURNSTILE_SITE_KEY: {
+        type: "string",
+        context: "client",
+        access: "public",
+      },
+      TURNSTILE_SECRET_KEY: {
+        type: "string",
+        context: "server",
+        access: "secret",
+      },
+      CORS_ORIGIN: {
+        type: "string",
+        context: "server",
+        access: "secret",
+      },
+    },
+  },
+
   fonts: [
     {
       provider: fontProviders.local(),
@@ -26,6 +59,7 @@ export default defineConfig({
       },
     },
   ],
+
   integrations: [
     favicons({
       name: "PineDuck",
@@ -42,4 +76,6 @@ export default defineConfig({
       },
     }),
   ],
+
+  adapter: cloudflare(),
 });

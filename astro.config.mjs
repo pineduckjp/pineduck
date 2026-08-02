@@ -8,6 +8,13 @@ import cloudflare from "@astrojs/cloudflare";
 export default defineConfig({
   site: "https://pineduck.jp/",
 
+  vite: {
+    optimizeDeps: {
+      // Vite の SSR 依存最適化で Astro Cloudflare のサーバーエントリポイントを事前バンドルしない。環境によっては古い deps_ssr 参照が残り、404 レンダリングがクラッシュすることがある。
+      exclude: ["@astrojs/cloudflare/entrypoints/server"],
+    },
+  },
+
   devToolbar: {
     enabled: false,
   },

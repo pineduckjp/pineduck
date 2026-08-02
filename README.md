@@ -75,9 +75,11 @@ pineduck/
 │   ├── layouts/
 │   │   ├── ArticleLayout.astro
 │   │   ├── FormLayout.astro
+│   │   ├── NotFoundLayout.astro
 │   │   ├── PrLayout.astro
 │   │   └── SelectLayout.astro
 │   ├── pages/
+│   │   ├── 404.astro
 │   │   ├── api/
 │   │   │   ├── add-android-mvp-request.ts
 │   │   │   └── add-contact.ts
@@ -127,6 +129,7 @@ pineduck/
 │   │   ├── footer.css
 │   │   ├── form.css
 │   │   ├── global.css
+│   │   ├── not-found.css
 │   │   ├── pr.css
 │   │   ├── select.css
 │   │   └── static-sprite.css

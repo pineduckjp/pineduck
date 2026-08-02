@@ -2,13 +2,48 @@
 import { defineConfig, fontProviders } from "astro/config";
 
 import favicons from "astro-favicons";
+import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://pineduck.jp/",
+
+  vite: {
+    optimizeDeps: {
+      // Vite の SSR 依存最適化で Astro Cloudflare のサーバーエントリポイントを事前バンドルしない。環境によっては古い deps_ssr 参照が残り、404 レンダリングがクラッシュすることがある。
+      exclude: ["@astrojs/cloudflare/entrypoints/server"],
+    },
+  },
+
   devToolbar: {
     enabled: false,
   },
+
+  env: {
+    schema: {
+      PUBLIC_CONTACT_API_URL: {
+        type: "string",
+        context: "client",
+        access: "public",
+      },
+      PUBLIC_ANDROID_MVP_REQUEST_API_URL: {
+        type: "string",
+        context: "client",
+        access: "public",
+      },
+      PUBLIC_TURNSTILE_SITE_KEY: {
+        type: "string",
+        context: "client",
+        access: "public",
+      },
+      TURNSTILE_SECRET_KEY: {
+        type: "string",
+        context: "server",
+        access: "secret",
+      },
+    },
+  },
+
   fonts: [
     {
       provider: fontProviders.local(),
@@ -26,6 +61,7 @@ export default defineConfig({
       },
     },
   ],
+
   integrations: [
     favicons({
       name: "PineDuck",
@@ -42,4 +78,6 @@ export default defineConfig({
       },
     }),
   ],
+
+  adapter: cloudflare(),
 });

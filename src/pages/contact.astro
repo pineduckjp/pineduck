@@ -1,0 +1,155 @@
+---
+import {
+  PUBLIC_CONTACT_API_URL,
+  PUBLIC_TURNSTILE_SITE_KEY,
+} from "astro:env/client";
+
+import Layout from "@/layouts/FormLayout.astro";
+
+import { SITE_TITLE } from "@/consts.ts";
+
+const pageTitle = `お問い合わせ | ${SITE_TITLE}`;
+---
+
+<Layout
+  header={{
+    name: "PineDuck",
+    logoIcon: "logo-icon-pineduck",
+    url: "/",
+  }}
+  title={pageTitle}
+  description="PineDuckへのお問い合わせ。"
+  breadcrumb={[
+    { name: "PineDuck", symbol: "symbol-pineduck", url: "/" },
+    { name: "お問い合わせ", symbol: "symbol-email" },
+  ]}
+  prevUrl="/"
+>
+  <h1>お問い合わせ</h1>
+
+  <section>
+    <p>PineDuckへのお問い合わせは、以下のフォームからお願いいたします。</p>
+    <p>
+      1〜2営業日ほど待っても返信がない場合は、お手数をおかけしますが、再度お問い合わせください。
+    </p>
+  </section>
+
+  <section>
+    <h2>お問い合わせフォーム</h2>
+    <form id="form">
+      <div>
+        <label>メールアドレス</label>
+        <input type="email" name="email" />
+      </div>
+      <div>
+        <label>ユーザー名</label>
+        <input type="text" name="user_name" />
+      </div>
+      <div>
+        <label>ユーザーID</label>
+        <input type="text" name="user_id" />
+      </div>
+      <div>
+        <label>アプリ名</label>
+        <select name="app">
+          <option value="">選択してください</option>
+          <option value="pineduck">PineDuck</option>
+          <option value="pineduck-diary">PineDuckダイアリー</option>
+          <option value="pineduck-art">PineDuckアート</option>
+          <option value="other">その他</option>
+        </select>
+      </div>
+      <div>
+        <label>お問い合わせ内容（必須）</label>
+        <textarea name="message" required maxlength="5000"></textarea>
+      </div>
+
+      <!-- Turnstile ウィジェット -->
+      <div id="turnstile-container"></div>
+
+      <p id="form-status"></p>
+      <button type="submit" class="submit-button">送信</button>
+    </form>
+  </section>
+</Layout>
+
+{
+  PUBLIC_TURNSTILE_SITE_KEY && (
+    <script
+      src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+      async
+      defer
+      is:inline
+    />
+  )
+}
+
+<script
+  define:vars={{ PUBLIC_TURNSTILE_SITE_KEY, PUBLIC_CONTACT_API_URL }}
+  is:inline
+>
+  const form = document.getElementById("form");
+  const status = document.getElementById("form-status");
+  let widgetId;
+
+  window.onload = function () {
+    widgetId = turnstile.render("#turnstile-container", {
+      sitekey: PUBLIC_TURNSTILE_SITE_KEY,
+      theme: "light",
+      size: "normal",
+    });
+  };
+
+  // URL パラメータからフォームの初期値を設定
+  const userNameParam =
+    new URLSearchParams(window.location.search).get("user_name") || "";
+  const userIdParam =
+    new URLSearchParams(window.location.search).get("user_id") || "";
+  const appParam = new URLSearchParams(window.location.search).get("app") || "";
+  const appOptions = ["pineduck", "pineduck-diary", "pineduck-art", "other"];
+  const appOptionValues = new Set(appOptions);
+  const appValue = appOptionValues.has(appParam) ? appParam : "";
+
+  form.user_name.value = userNameParam;
+  form.user_id.value = userIdParam;
+  form.app.value = appValue;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    status.textContent = "送信中...";
+
+    const formData = new FormData(form);
+    const payload = Object.fromEntries(formData);
+
+    // Turnstile トークン取得
+    const turnstileResponse = turnstile.getResponse(widgetId);
+    if (!turnstileResponse) {
+      status.textContent =
+        "認証が完了していません。しばらく待ってから再度お試しください。";
+      return;
+    }
+    payload.turnstileToken = turnstileResponse;
+
+    try {
+      const res = await fetch(PUBLIC_CONTACT_API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        status.textContent = "送信が完了しました。";
+        // メッセージのみリセット
+        form.message.value = "";
+        // Turnstile トークンリセット
+        turnstile.reset(widgetId);
+      } else {
+        console.error("Error response:", data);
+        status.textContent = `エラー: ${data.error || "送信に失敗しました。"}`;
+      }
+    } catch (err) {
+      status.textContent = err.message || "ネットワークエラーが発生しました。";
+    }
+  });
+</script>

@@ -1,0 +1,36 @@
+---
+import Layout from "@/layouts/NotFoundLayout.astro";
+import OptImg from "@/components/OptImg.astro";
+import StaticSprite from "@/components/StaticSprite.astro";
+
+import { SITE_TITLE } from "@/consts.ts";
+
+import NotFoundImage from "@/assets/images/not-found.webp";
+---
+
+<Layout
+  header={{
+    name: "PineDuck",
+    logoIcon: "logo-icon-pineduck",
+    url: "/",
+  }}
+  title={`ページが見つかりません | ${SITE_TITLE}`}
+  description="お探しのページは見つかりませんでした。URLが間違っているか、ページが削除された可能性があります。"
+  breadcrumb={[
+    { name: "PineDuck", symbol: "symbol-pineduck", url: "/" },
+    { name: "ページが見つかりません", symbol: "symbol-article" },
+  ]}
+>
+  <OptImg
+    class="not-found-image"
+    src={NotFoundImage}
+    alt="ページが見つかりません"
+  />
+  <h1>ページが見つかりません</h1>
+  <p>
+    お探しのページは見つかりませんでした。URLが間違っているか、ページが削除された可能性があります。
+  </p>
+  <a class="return-root" href="/"
+    ><StaticSprite name="symbol-pineduck" /><span>ホームへ</span></a
+  >
+</Layout>

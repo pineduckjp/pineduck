@@ -7,6 +7,13 @@ const config = {
         parser: "astro",
       },
     },
+    {
+      files: "*.jsonc",
+      options: {
+        parser: "jsonc",
+        trailingComma: "none",
+      },
+    },
   ],
 };
 

@@ -10,6 +10,10 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "db:local:contacts:get": "npx wrangler d1 execute pineduck-form-db --local --file ./drizzle/sql/local/get-contacts.sql",
+    "db:local:contacts:reset": "npx wrangler d1 execute pineduck-form-db --local --file ./drizzle/sql/local/reset-contacts.sql",
+    "db:local:android-mvp-requests:get": "npx wrangler d1 execute pineduck-form-db --local --file ./drizzle/sql/local/get-android-mvp-requests.sql",
+    "db:local:android-mvp-requests:reset": "npx wrangler d1 execute pineduck-form-db --local --file ./drizzle/sql/local/reset-android-mvp-requests.sql",
     "lint": "eslint . && stylelint \"**/*.{css,astro}\"",
     "lint:fix": "eslint . --fix && stylelint \"**/*.{css,astro}\" --fix",
     "format": "prettier . --write",
@@ -19,15 +23,21 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.9",
+    "@astrojs/cloudflare": "^14.1.6",
     "astro": "^7.0.9",
     "astro-favicons": "^3.1.6",
-    "typescript": "^6.0.3"
+    "dotenv": "^17.4.2",
+    "drizzle-orm": "^1.0.0-rc.4",
+    "typescript": "^6.0.3",
+    "wrangler": "^4.115.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@types/node": "^26.1.2",
     "@typescript-eslint/eslint-plugin": "^8.63.0",
     "@typescript-eslint/parser": "^8.63.0",
     "astro-eslint-parser": "^2.1.0",
+    "drizzle-kit": "^1.0.0-rc.4",
     "eslint": "^10.6.0",
     "eslint-plugin-astro": "^2.1.1",
     "postcss-html": "^1.8.1",
@@ -36,6 +46,7 @@
     "stylelint": "^17.14.0",
     "stylelint-config-recess-order": "^7.7.0",
     "stylelint-config-standard": "^40.0.0",
+    "tsx": "^4.23.1",
     "typescript-eslint": "^8.63.0"
   }
 }

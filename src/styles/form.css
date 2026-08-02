@@ -1,0 +1,89 @@
+main {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+article {
+  width: 100%;
+  max-width: 600px;
+  padding: 0 15px;
+  margin: 15px auto;
+  overflow: hidden;
+}
+
+article h1,
+article h2,
+article p,
+article label {
+  margin: 15px 0;
+}
+
+article h1 {
+  font-size: 30px;
+}
+
+article h2 {
+  font-size: 25px;
+}
+
+article a {
+  color: var(--dark);
+  text-decoration: underline;
+}
+
+article a:hover {
+  text-decoration: none;
+}
+
+article label {
+  padding-left: 12px;
+  margin: 12px 0 4px;
+  font-size: 20px;
+  border-left: solid 3px var(--dark);
+}
+
+article input,
+article textarea,
+article select {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  padding: 10px;
+  margin: 25px auto;
+  font-size: 17px;
+  color: var(--dark);
+  appearance: none;
+  background: transparent;
+  border: solid 1.5px var(--dark);
+  border-radius: 0;
+}
+
+article input:focus,
+article textarea:focus,
+article select:focus {
+  outline: solid 1.5px var(--dark);
+}
+
+article .submit-button {
+  display: block;
+  padding: 10px 20px;
+  margin: 25px 0;
+  font-size: 17px;
+  color: var(--base);
+  cursor: pointer;
+  background: var(--dark);
+  border: solid 1.5px var(--dark);
+}
+
+article .submit-button:hover {
+  color: var(--dark);
+  background: transparent;
+}
+
+article #form-status {
+  color: var(--red);
+}

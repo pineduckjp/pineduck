@@ -170,7 +170,6 @@ pineduck/
 
 ```text
 TURNSTILE_SECRET_KEY=<Cloudflare Turnstile のシークレットキー>
-CORS_ORIGIN=<CORSを許可するオリジン>
 ```
 
 D1 などのバインディングは、`wrangler types` で生成される `worker-configuration.d.ts` に定義されています。詳しくは、[ドキュメント](https://developers.cloudflare.com/workers/languages/typescript/#migrating) を参照してください。

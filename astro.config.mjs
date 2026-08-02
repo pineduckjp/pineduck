@@ -41,11 +41,6 @@ export default defineConfig({
         context: "server",
         access: "secret",
       },
-      CORS_ORIGIN: {
-        type: "string",
-        context: "server",
-        access: "secret",
-      },
     },
   },
 

@@ -5,7 +5,6 @@ interface __BaseEnv_Env {
   DB: D1Database;
   ASSETS: Fetcher;
   TURNSTILE_SECRET_KEY: string;
-  CORS_ORIGIN: string;
 }
 declare namespace Cloudflare {
   interface Env extends __BaseEnv_Env {}

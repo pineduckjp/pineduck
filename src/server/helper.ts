@@ -1,17 +1,9 @@
-import { CORS_ORIGIN } from "astro:env/server";
-
-// API レスポンスを JSON 形式で返す（CORS ヘッダーも付与）
+// API レスポンスを JSON 形式で返す
 export function jsonResponse(data: string, status: number): Response {
   const headers = { "Content-Type": "application/json" } as Record<
     string,
     string
   >;
-  if (CORS_ORIGIN) {
-    console.log(
-      `Setting CORS header: Access-Control-Allow-Origin: ${CORS_ORIGIN}`,
-    );
-    headers["Access-Control-Allow-Origin"] = CORS_ORIGIN;
-  }
 
   return new Response(data, { status, headers });
 }

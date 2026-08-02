@@ -28,6 +28,15 @@ pineduck/
 │   ├── images/
 │   │   └── *.webp
 │   └── sprites.md
+├── drizzle/
+│   ├── migrations/
+│   │   └── migration.sql
+│   └── sql/
+│       └── local/
+│           ├── get-android-mvp-requests.sql
+│           ├── get-contacts.sql
+│           ├── reset-android-mvp-requests.sql
+│           └── reset-contacts.sql
 ├── public/
 │   ├── appstore-badge-jp.svg
 │   ├── favicon.svg
@@ -61,12 +70,19 @@ pineduck/
 │   │       │   └── *.json
 │   │       └── static/
 │   │           └── *.json
+│   ├── db/
+│   │   └── schema.ts
 │   ├── layouts/
 │   │   ├── ArticleLayout.astro
+│   │   ├── FormLayout.astro
 │   │   ├── PrLayout.astro
 │   │   └── SelectLayout.astro
 │   ├── pages/
+│   │   ├── api/
+│   │   │   ├── add-android-mvp-request.ts
+│   │   │   └── add-contact.ts
 │   │   ├── art/
+│   │   │   ├── android-mvp-request.astro
 │   │   │   ├── index.astro
 │   │   │   ├── pr.astro
 │   │   │   ├── privacy.astro
@@ -78,6 +94,7 @@ pineduck/
 │   │   ├── camp/
 │   │   │   └── index.astro
 │   │   ├── commerce.astro
+│   │   ├── contact.astro
 │   │   ├── cooking/
 │   │   │   └── index.astro
 │   │   ├── diary/
@@ -102,10 +119,13 @@ pineduck/
 │   │   ├── story/
 │   │   │   └── index.astro
 │   │   └── terms.astro
+│   ├── server/
+│   │   └── helper.ts
 │   ├── styles/
 │   │   ├── article.css
 │   │   ├── dynamic-sprite.css
 │   │   ├── footer.css
+│   │   ├── form.css
 │   │   ├── global.css
 │   │   ├── pr.css
 │   │   ├── select.css
@@ -121,11 +141,14 @@ pineduck/
 ├── .gitignore
 ├── .prettierrc.mjs
 ├── astro.config.mjs
+├── drizzle.config.ts
 ├── eslint.config.mjs
 ├── package-lock.json
 ├── package.json
 ├── stylelint.config.mjs
-└── tsconfig.json
+├── tsconfig.json
+├── worker-configuration.d.ts
+└── wrangler.jsonc
 ```
 
 ### レイアウト
@@ -135,6 +158,45 @@ pineduck/
 - `Article`: 記事画面のレイアウト
 - `Contact`: お問い合わせ画面のレイアウト
 - `TesterEmail`: テストメールフォーム画面のレイアウト
+
+## 環境変数
+
+### Cloudflare Workers 側で設定する環境変数
+
+ローカルでは `.dev.vars` を使用し、本番環境では　Cloudflare のダッシュボードか CLI で設定します。
+
+```text
+TURNSTILE_SECRET_KEY=<Cloudflare Turnstile のシークレットキー>
+CORS_ORIGIN=<CORSを許可するオリジン>
+```
+
+D1 などのバインディングは、`wrangler types` で生成される `worker-configuration.d.ts` に定義されています。詳しくは、[ドキュメント](https://developers.cloudflare.com/workers/languages/typescript/#migrating) を参照してください。
+
+### GitHub Actions 側で設定する環境変数
+
+ローカルでは `.env` を使用し、本番環境では GitHub Actions の Secrets もしくは Vars で設定します。
+
+```text
+PUBLIC_CONTACT_API_URL=<お問い合わせAPIのURL>
+PUBLIC_ANDROID_MVP_REQUEST_API_URL=<Android MVPリクエストAPIのURL>
+
+PUBLIC_TURNSTILE_SITE_KEY=<Cloudflare Turnstile のサイトキー>
+
+CLOUDFLARE_ACCOUNT_ID=<Cloudflare アカウントID> # シークレット
+CLOUDFLARE_API_TOKEN=<Cloudflare APIトークン> # シークレット
+```
+
+### ローカルでのみ使用する環境変数
+
+drizzle-kit 関係のコマンドである `drizzle-kit generate` や `drizzle-kit push` などを使用するために、ローカルでのみ使用する環境変数を `.env` に設定します。
+
+```text
+# CLOUDFLARE_ACCOUNT_ID=<Cloudflare アカウントID>
+CLOUDFLARE_DATABASE_ID=<Cloudflare D1 データベースID>
+CLOUDFLARE_D1_TOKEN=<Cloudflare D1 データベーストークン>
+```
+
+Drizzle + D1 の設定については、[drizzle-kit のドキュメント](https://orm.drizzle.team/docs/get-started/d1-new) を参照してください。
 
 ## セットアップ
 

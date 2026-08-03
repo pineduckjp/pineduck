@@ -9,7 +9,13 @@
     "not_found_handling": "404-page"
   },
   "observability": {
-    "enabled": true
+    "logs": {
+      "enabled": true,
+      "invocation_logs": true
+    },
+    "traces": {
+      "enabled": true
+    }
   },
   "d1_databases": [
     {
@@ -17,6 +23,12 @@
       "database_name": "pineduck-form-db",
       "database_id": "47ccf15c-5e48-49fc-95f3-012a07d96ee6",
       "migrations_dir": "drizzle/migrations"
+    }
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "SESSION",
+      "id": "893d0802d8da477eba5e7e4496f58847"
     }
   ]
 }

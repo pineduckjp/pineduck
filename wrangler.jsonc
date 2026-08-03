@@ -9,7 +9,13 @@
     "not_found_handling": "404-page"
   },
   "observability": {
-    "enabled": true
+    "logs": {
+      "enabled": true,
+      "invocation_logs": true
+    },
+    "traces": {
+      "enabled": true
+    }
   },
   "d1_databases": [
     {
@@ -22,8 +28,7 @@
   "kv_namespaces": [
     {
       "binding": "SESSION",
-      "id": "7be171015bad4c03bd24b2f7653c70ab",
-      "preview_id": "7be171015bad4c03bd24b2f7653c70ab"
+      "id": "893d0802d8da477eba5e7e4496f58847"
     }
   ]
 }
